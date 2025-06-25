@@ -7,6 +7,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Compare from "./pages/Compare";
 import MotorInsurance from "./pages/MotorInsurance";
+import HealthInsurance from "./pages/HealthInsurance";
+import TravelInsurance from "./pages/TravelInsurance";
+import LifeInsurance from "./pages/LifeInsurance";
+import TakafulInsurance from "./pages/TakafulInsurance";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,10 +25,17 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/compare" element={<Compare />} />
           <Route path="/motor" element={<MotorInsurance />} />
-          <Route path="/health" element={<Compare />} />
-          <Route path="/travel" element={<Compare />} />
-          <Route path="/life" element={<Compare />} />
-          <Route path="/takaful" element={<Compare />} />
+          <Route path="/motor/*" element={<MotorInsurance />} />
+          <Route path="/bike" element={<MotorInsurance />} />
+          <Route path="/bike/*" element={<MotorInsurance />} />
+          <Route path="/health" element={<HealthInsurance />} />
+          <Route path="/health/*" element={<HealthInsurance />} />
+          <Route path="/travel" element={<TravelInsurance />} />
+          <Route path="/travel/*" element={<TravelInsurance />} />
+          <Route path="/life" element={<LifeInsurance />} />
+          <Route path="/group-health/*" element={<HealthInsurance />} />
+          <Route path="/takaful" element={<TakafulInsurance />} />
+          <Route path="/takaful/*" element={<TakafulInsurance />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

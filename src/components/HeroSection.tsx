@@ -1,7 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Calculator, CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -24,13 +24,17 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8">
-                <Calculator className="h-5 w-5 mr-2" />
-                Get Free Quote
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8">
-                View All Products
-              </Button>
+              <Link to="/compare">
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8">
+                  <Calculator className="h-5 w-5 mr-2" />
+                  Get Free Quote
+                </Button>
+              </Link>
+              <Link to="/compare">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8">
+                  View All Products
+                </Button>
+              </Link>
             </div>
 
             <div className="flex flex-wrap gap-6 text-blue-100">

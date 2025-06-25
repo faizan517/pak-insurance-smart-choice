@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Shield, User, Phone } from "lucide-react";
+import { Menu, Shield, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   NavigationMenu,
@@ -106,7 +106,7 @@ const Navbar = () => {
                       {category.name}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <div className="grid w-[400px] gap-3 p-4">
+                      <div className="grid w-[400px] gap-3 p-4 bg-white">
                         {category.items.map((item) => (
                           <NavigationMenuLink key={item.name} asChild>
                             <Link
@@ -131,13 +131,11 @@ const Navbar = () => {
               <Phone className="h-4 w-4" />
               <span>021-111-212-212</span>
             </div>
-            <Button variant="outline" size="sm">
-              <User className="h-4 w-4 mr-2" />
-              Login
-            </Button>
-            <Button size="sm" className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700">
-              Get Quote
-            </Button>
+            <Link to="/compare">
+              <Button size="sm" className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700">
+                Get Quote
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu */}
@@ -147,7 +145,7 @@ const Navbar = () => {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+            <SheetContent side="right" className="w-80 bg-white">
               <div className="flex flex-col space-y-4 mt-8">
                 {navItems.map((category) => (
                   <div key={category.name} className="space-y-2">
@@ -171,13 +169,11 @@ const Navbar = () => {
                     <Phone className="h-4 w-4" />
                     <span>021-111-212-212</span>
                   </div>
-                  <Button variant="outline" size="sm" className="w-full mb-2">
-                    <User className="h-4 w-4 mr-2" />
-                    Login
-                  </Button>
-                  <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700">
-                    Get Quote
-                  </Button>
+                  <Link to="/compare">
+                    <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700">
+                      Get Quote
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </SheetContent>
