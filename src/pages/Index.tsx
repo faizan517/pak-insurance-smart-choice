@@ -108,7 +108,6 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-blue-900/40"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.03\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"4\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
         
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-28 lg:py-40">
           <div className="text-center space-y-12">
@@ -174,8 +173,6 @@ const Index = () => {
 
       {/* Insurance Categories */}
       <section className="py-28 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23e2e8f0\" fill-opacity=\"0.2\"%3E%3Cpath d=\"M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
-        
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
@@ -259,8 +256,6 @@ const Index = () => {
 
       {/* Customer Reviews */}
       <section className="py-28 bg-gradient-to-br from-gray-50 via-white to-indigo-50 relative">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"30\" height=\"30\" viewBox=\"0 0 30 30\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23a5b4fc\" fill-opacity=\"0.1\"%3E%3Cpolygon points=\"15,0 30,15 15,30 0,15\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
-        
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
@@ -310,7 +305,6 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-28 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-blue-900/50"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"80\" height=\"80\" viewBox=\"0 0 80 80\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.03\"%3E%3Cpath d=\"M40 40c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm20 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
         
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">
