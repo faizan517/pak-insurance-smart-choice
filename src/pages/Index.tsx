@@ -228,7 +228,7 @@ const Index = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
               Why Choose
               <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
-                SmartChoice?
+                EzeeInsure?
               </span>
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
