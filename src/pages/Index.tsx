@@ -142,11 +142,11 @@ const Index = () => {
                   Get Free Quote
                 </Button>
               </Link>
-              <Link to="/compare">
+              {/* <Link to="/compare">
                 <Button size="lg" variant="outline" className="border-2 border-white text-black hover:bg-white hover:text-gray-900 px-12 py-6 text-lg font-semibold rounded-full backdrop-blur-sm">
                   View All
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
