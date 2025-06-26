@@ -31,7 +31,7 @@ const HeroSection = () => {
                 </Button>
               </Link>
               <Link to="/compare">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8">
+                <Button size="lg" variant="outline" className="border-white text-black hover:bg-white px-8">
                   View All Products
                 </Button>
               </Link>
