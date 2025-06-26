@@ -23,20 +23,18 @@ const HeroSection = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/compare">
                 <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8">
                   <Calculator className="h-5 w-5 mr-2" />
                   Get Free Quote
                 </Button>
               </Link>
-              {/* <Link to="/compare">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8">
-                  <Calculator className="h-5 w-5 mr-2" />
-                   View All Products
+              <Link to="/compare">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8">
+                  View All Products
                 </Button>
-
-              </Link> */}
+              </Link>
             </div>
 
             <div className="flex flex-wrap gap-6 text-blue-100">
