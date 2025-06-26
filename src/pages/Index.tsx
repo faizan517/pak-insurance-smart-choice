@@ -106,45 +106,45 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-indigo-900 via-blue-800 to-cyan-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/30 via-transparent to-cyan-700/20"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="4"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+      <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-blue-900/40"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="4"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
-          <div className="text-center space-y-8">
-            <div className="space-y-6">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-28 lg:py-40">
+          <div className="text-center space-y-12">
+            <div className="space-y-8">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
                 Find The Best
-                <span className="block bg-gradient-to-r from-yellow-300 via-orange-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-amber-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
                   Insurance Coverage
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
                 Pakistan's most trusted insurance marketplace. Compare quotes from top insurers, 
                 get instant coverage, and manage your policies seamlessly.
               </p>
             </div>
 
-            <div className="flex justify-center space-x-6 pt-8">
+            <div className="flex justify-center space-x-8 pt-8">
               {insuranceCategories.map((category, index) => (
                 <Link key={index} to={category.href}>
-                  <div className="group bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-6 hover:bg-white/20 hover:scale-110 transition-all duration-300 cursor-pointer">
-                    <category.icon className="h-10 w-10 text-white mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
-                    <span className="text-sm font-medium text-white block text-center">{category.title.split(' ')[0]}</span>
+                  <div className="group bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-8 hover:bg-white/20 hover:scale-110 transition-all duration-500 cursor-pointer shadow-xl">
+                    <category.icon className="h-12 w-12 text-white mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
+                    <span className="text-sm font-semibold text-white block text-center tracking-wide">{category.title.split(' ')[0]}</span>
                   </div>
                 </Link>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-12">
+            <div className="flex flex-col sm:flex-row gap-8 justify-center pt-16">
               <Link to="/compare">
-                <Button size="lg" className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 hover:from-yellow-500 hover:to-orange-600 font-bold px-10 py-4 text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-300">
+                <Button size="lg" className="bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 hover:from-amber-500 hover:to-orange-600 font-bold px-12 py-6 text-lg rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
                   <Calculator className="h-6 w-6 mr-3" />
                   Get Free Quote
                 </Button>
               </Link>
               <Link to="/compare">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-10 py-4 text-lg font-semibold rounded-full backdrop-blur-sm">
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-12 py-6 text-lg font-semibold rounded-full backdrop-blur-sm">
                   View All Products
                 </Button>
               </Link>
@@ -154,18 +154,18 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-white relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-transparent to-cyan-50"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="py-24 bg-white relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-transparent to-indigo-50"></div>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
-                <div className={`inline-block p-4 rounded-2xl bg-gradient-to-r ${stat.color} mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`inline-block p-6 rounded-3xl bg-gradient-to-r ${stat.color} mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                   <div className="text-4xl md:text-5xl font-bold text-white">
                     {stat.number}
                   </div>
                 </div>
-                <div className="text-lg font-medium text-gray-600">{stat.label}</div>
+                <div className="text-lg font-semibold text-gray-700">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -173,14 +173,14 @@ const Index = () => {
       </section>
 
       {/* Insurance Categories */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23e2e8f0" fill-opacity="0.3"%3E%3Cpath d="M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+      <section className="py-28 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23e2e8f0" fill-opacity="0.2"%3E%3Cpath d="M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-24">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
               Choose Your Perfect
-              <span className="block bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Insurance Plan
               </span>
             </h2>
@@ -189,30 +189,30 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-10">
             {insuranceCategories.map((category, index) => (
               <Link key={index} to={category.href}>
-                <Card className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg overflow-hidden ${category.bgPattern}`}>
-                  <CardHeader className="pb-6 relative">
-                    <div className="flex items-center justify-between mb-6">
-                      <div className={`w-20 h-20 rounded-3xl bg-gradient-to-r ${category.color} flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300`}>
-                        <category.icon className="h-10 w-10 text-white" />
+                <Card className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-0 shadow-xl overflow-hidden ${category.bgPattern} h-full`}>
+                  <CardHeader className="pb-8 relative">
+                    <div className="flex items-center justify-between mb-8">
+                      <div className={`w-24 h-24 rounded-3xl bg-gradient-to-r ${category.color} flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300`}>
+                        <category.icon className="h-12 w-12 text-white" />
                       </div>
                       <div className="text-right">
-                        <Badge className="bg-white/80 text-gray-700 hover:bg-white">
+                        <Badge className="bg-white/90 text-gray-700 font-semibold px-4 py-2 shadow-md">
                           Popular Choice
                         </Badge>
                       </div>
                     </div>
-                    <CardTitle className="text-2xl font-bold text-gray-900 mb-2">
+                    <CardTitle className="text-3xl font-bold text-gray-900 mb-3 tracking-tight">
                       {category.title}
                     </CardTitle>
-                    <CardDescription className="text-gray-600 text-lg">
+                    <CardDescription className="text-gray-600 text-lg leading-relaxed">
                       {category.description}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <Button className={`w-full bg-gradient-to-r ${category.color} hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300 text-lg py-3 rounded-xl`}>
+                    <Button className={`w-full bg-gradient-to-r ${category.color} hover:opacity-90 shadow-xl hover:shadow-2xl transition-all duration-300 text-lg py-4 rounded-xl font-semibold`}>
                       Get Quote Now
                     </Button>
                   </CardContent>
@@ -224,13 +224,13 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-white relative">
+      <section className="py-28 bg-white relative">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-cyan-50"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-24">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
               Why Choose
-              <span className="block bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
                 SmartChoice?
               </span>
             </h2>
@@ -239,13 +239,13 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
             {features.map((feature, index) => (
               <div key={index} className="text-center group">
-                <div className={`bg-gradient-to-r ${feature.color} p-6 rounded-3xl w-20 h-20 mx-auto mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-xl`}>
+                <div className={`bg-gradient-to-r ${feature.color} p-8 rounded-3xl w-24 h-24 mx-auto mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-xl`}>
                   <feature.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600 text-lg leading-relaxed">
@@ -258,32 +258,32 @@ const Index = () => {
       </section>
 
       {/* Customer Reviews */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-indigo-50 relative">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23a5b4fc" fill-opacity="0.1"%3E%3Cpolygon points="15,0 30,15 15,30 0,15"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+      <section className="py-28 bg-gradient-to-br from-gray-50 via-white to-indigo-50 relative">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23a5b4fc" fill-opacity="0.1"%3E%3Cpolygon points="15,0 30,15 15,30 0,15"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-24">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
               What Our Customers
-              <span className="block bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600 bg-clip-text text-transparent">
                 Say About Us
               </span>
             </h2>
-            <div className="flex justify-center items-center space-x-3 mb-6">
+            <div className="flex justify-center items-center space-x-4 mb-8">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-8 w-8 text-yellow-400 fill-current" />
+                <Star key={i} className="h-10 w-10 text-yellow-400 fill-current" />
               ))}
-              <span className="text-xl text-gray-600 ml-4 font-semibold">4.8 Rating • 500+ Reviews</span>
+              <span className="text-xl text-gray-600 ml-6 font-semibold">4.8 Rating • 500+ Reviews</span>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-10">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/80 backdrop-blur-sm">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center space-x-2 mb-6">
+              <Card key={index} className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 bg-white/90 backdrop-blur-sm">
+                <CardHeader className="pb-6">
+                  <div className="flex items-center space-x-2 mb-8">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                      <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
                     ))}
                   </div>
                   <CardDescription className="text-gray-700 text-lg leading-relaxed font-medium">
@@ -291,8 +291,8 @@ const Index = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center shadow-lg">
+                  <div className="flex items-center space-x-6">
+                    <div className="w-18 h-18 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center shadow-lg">
                       <span className="text-lg font-bold text-white">{testimonial.avatar}</span>
                     </div>
                     <div>
@@ -308,20 +308,20 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-indigo-900 via-blue-800 to-cyan-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/50 to-cyan-700/50"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Cpath d="M40 40c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm20 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+      <section className="py-28 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-blue-900/50"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Cpath d="M40 40c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm20 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">
             Ready to Get Protected?
           </h2>
-          <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-300 mb-16 max-w-3xl mx-auto leading-relaxed">
             Join thousands of satisfied customers who trust us with their insurance needs. 
             Get quotes from top insurance companies in Pakistan instantly.
           </p>
           <Link to="/compare">
-            <Button size="lg" className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 hover:from-yellow-500 hover:to-orange-600 font-bold px-12 py-4 text-xl rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+            <Button size="lg" className="bg-gradient-to-r from-amber-400 to-orange-500 text-gray-900 hover:from-amber-500 hover:to-orange-600 font-bold px-16 py-6 text-xl rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
               <Calculator className="h-6 w-6 mr-3" />
               Start Comparing Now
             </Button>
