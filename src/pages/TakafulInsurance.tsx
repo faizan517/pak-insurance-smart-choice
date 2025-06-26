@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, Shield, Star, Moon } from "lucide-react";
+import { CheckCircle, Shield, Star, Moon, Users, Heart, Award, BookOpen } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -20,67 +20,91 @@ const TakafulInsurance = () => {
   const plans = [
     {
       name: "Pak Qatar Motor Takaful",
+      company: "Pak Qatar Takaful",
       premium: "Rs. 18,000",
       coverage: "Rs. 1,500,000",
       features: ["Shariah Compliant", "Own Damage", "Third Party", "Roadside Assistance"],
       rating: 4.6,
-      color: "from-teal-500 to-cyan-600"
+      reviews: "2.3k",
+      color: "from-teal-500 to-cyan-600",
+      popular: false
     },
     {
       name: "Family Takaful Plan",
+      company: "Pak Qatar Family",
       premium: "Rs. 28,000",
       coverage: "Rs. 10,000,000", 
       features: ["Life Protection", "Investment Growth", "Wakala Model", "Profit Sharing"],
       rating: 4.7,
-      color: "from-green-500 to-teal-600"
+      reviews: "3.5k",
+      color: "from-green-500 to-teal-600",
+      popular: true
     },
     {
       name: "Travel Takaful Coverage",
+      company: "Takaful Pakistan",
       premium: "Rs. 9,500",
       coverage: "$30,000",
-      features: ["Medical Emergency", "Baggage Protection", "Trip Cancellation", "Halal Food"],
+      features: ["Medical Emergency", "Baggage Protection", "Trip Cancellation", "Halal Food Coverage"],
       rating: 4.5,
-      color: "from-blue-500 to-teal-600"
+      reviews: "1.7k",
+      color: "from-blue-500 to-teal-600",
+      popular: false
     }
+  ];
+
+  const benefits = [
+    { icon: Moon, title: "Shariah Compliant", desc: "100% Islamic principles based coverage" },
+    { icon: Users, title: "Mutual Cooperation", desc: "Community-based risk sharing model" },
+    { icon: Heart, title: "Ethical Investment", desc: "Your funds invested in halal businesses" },
+    { icon: Award, title: "Profit Sharing", desc: "Share in surplus and investment profits" }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-teal-50">
       <Navbar />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-4">
-            <div className="bg-gradient-to-r from-teal-500 to-cyan-600 p-4 rounded-2xl">
-              <Shield className="h-12 w-12 text-white" />
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-teal-600 via-cyan-600 to-teal-700 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-900/20 to-transparent"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center space-y-6">
+            <div className="flex justify-center mb-6">
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-3xl">
+                <Shield className="h-16 w-16 text-white" />
+              </div>
             </div>
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              Takaful Insurance
+              <span className="block text-3xl md:text-4xl font-normal text-teal-100 mt-2">
+                Shariah-Compliant Protection
+              </span>
+            </h1>
+            <p className="text-xl text-teal-100 max-w-2xl mx-auto">
+              Islamic insurance solutions based on mutual cooperation and ethical investment principles
+            </p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Takaful Insurance Plans
-          </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Shariah-compliant insurance solutions based on Islamic principles of mutual cooperation
-          </p>
         </div>
+      </section>
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Quote Form */}
-        <Card className="mb-12 shadow-lg border-0">
-          <CardHeader>
-            <CardTitle className="text-2xl flex items-center">
-              <Moon className="h-6 w-6 mr-2 text-teal-500" />
-              Get Takaful Insurance Quote
+        <Card className="mb-12 shadow-2xl border-0 -mt-20 relative z-10 bg-white">
+          <CardHeader className="bg-gradient-to-r from-teal-500 to-cyan-600 text-white rounded-t-lg">
+            <CardTitle className="text-2xl flex items-center justify-center">
+              <Moon className="h-6 w-6 mr-2" />
+              Get Your Takaful Insurance Quote
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-teal-100 text-center">
               Choose from our Shariah-compliant insurance products
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-8">
             <div className="grid md:grid-cols-4 gap-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Takaful Type</label>
                 <Select value={formData.type} onValueChange={(value) => setFormData({...formData, type: value})}>
-                  <SelectTrigger>
+                  <SelectTrigger className="h-12">
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -98,13 +122,14 @@ const TakafulInsurance = () => {
                   placeholder="Enter age" 
                   value={formData.age}
                   onChange={(e) => setFormData({...formData, age: e.target.value})}
+                  className="h-12"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Coverage Amount</label>
                 <Select value={formData.amount} onValueChange={(value) => setFormData({...formData, amount: value})}>
-                  <SelectTrigger>
+                  <SelectTrigger className="h-12">
                     <SelectValue placeholder="Select amount" />
                   </SelectTrigger>
                   <SelectContent>
@@ -117,7 +142,7 @@ const TakafulInsurance = () => {
               </div>
               
               <div className="flex items-end">
-                <Button className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700">
+                <Button className="w-full h-12 bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-lg font-semibold">
                   Get Quotes
                 </Button>
               </div>
@@ -125,32 +150,71 @@ const TakafulInsurance = () => {
           </CardContent>
         </Card>
 
+        {/* Benefits Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-slate-900 text-center mb-12">
+            Why Choose Takaful Insurance?
+          </h2>
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="text-center group">
+                <div className="bg-gradient-to-r from-teal-500 to-cyan-600 p-4 rounded-2xl w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <benefit.icon className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  {benefit.title}
+                </h3>
+                <p className="text-slate-600">
+                  {benefit.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Takaful Plans */}
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-slate-900 text-center">
-            Shariah-Compliant Plans
-          </h2>
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+              Shariah-Compliant Plans
+            </h2>
+            <p className="text-xl text-slate-600">
+              Islamic insurance solutions that comply with Shariah principles
+            </p>
+          </div>
           
           <div className="grid lg:grid-cols-3 gap-8">
             {plans.map((plan, index) => (
-              <Card key={index} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
+              <Card key={index} className={`hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg relative ${plan.popular ? 'ring-2 ring-green-500' : ''}`}>
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-green-500 hover:bg-green-500 text-white px-4 py-1">
+                      Most Popular
+                    </Badge>
+                  </div>
+                )}
+                
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-4">
                     <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${plan.color} flex items-center justify-center`}>
                       <Shield className="h-8 w-8 text-white" />
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                      <span className="text-sm font-medium">{plan.rating}</span>
+                    <div className="text-right">
+                      <div className="flex items-center space-x-1 justify-end">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-medium">{plan.rating}</span>
+                      </div>
+                      <span className="text-xs text-slate-500">({plan.reviews} reviews)</span>
                     </div>
                   </div>
                   
                   <CardTitle className="text-xl font-bold text-slate-900">
                     {plan.name}
                   </CardTitle>
+                  <p className="text-sm text-slate-500">{plan.company}</p>
                   
                   <div className="text-center py-4">
-                    <div className="text-2xl font-bold text-slate-900 mb-1">
+                    <div className="text-3xl font-bold text-slate-900 mb-1">
                       {plan.premium}
                     </div>
                     <Badge variant="outline" className="text-green-600 border-green-600">
@@ -163,13 +227,13 @@ const TakafulInsurance = () => {
                   <div className="space-y-3 mb-6">
                     {plan.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
+                        <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
                         <span className="text-sm text-slate-600">{feature}</span>
                       </div>
                     ))}
                   </div>
                   
-                  <Button className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700">
+                  <Button className={`w-full bg-gradient-to-r ${plan.color} hover:opacity-90 h-12 text-lg font-semibold`}>
                     Select Plan
                   </Button>
                 </CardContent>
