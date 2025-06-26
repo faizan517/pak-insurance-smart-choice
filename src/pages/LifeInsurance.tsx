@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, User, Shield, Family, Star } from "lucide-react";
+import { CheckCircle, User, Shield, Users, Star } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -68,7 +68,7 @@ const LifeInsurance = () => {
         <Card className="mb-12 shadow-lg border-0">
           <CardHeader>
             <CardTitle className="text-2xl flex items-center">
-              <Family className="h-6 w-6 mr-2 text-purple-500" />
+              <Users className="h-6 w-6 mr-2 text-purple-500" />
               Get Life Insurance Quote
             </CardTitle>
             <CardDescription>

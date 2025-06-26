@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, Shield, Star, Crescent } from "lucide-react";
+import { CheckCircle, Shield, Star, Moon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -68,7 +68,7 @@ const TakafulInsurance = () => {
         <Card className="mb-12 shadow-lg border-0">
           <CardHeader>
             <CardTitle className="text-2xl flex items-center">
-              <Crescent className="h-6 w-6 mr-2 text-teal-500" />
+              <Moon className="h-6 w-6 mr-2 text-teal-500" />
               Get Takaful Insurance Quote
             </CardTitle>
             <CardDescription>
