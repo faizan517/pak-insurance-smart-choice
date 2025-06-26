@@ -142,11 +142,13 @@ const Index = () => {
                   Get Free Quote
                 </Button>
               </Link>
-              {/* <Link to="/compare">
-                <Button size="lg" variant="outline" className="border-2 border-white text-black hover:bg-white hover:text-gray-900 px-12 py-6 text-lg font-semibold rounded-full backdrop-blur-sm">
-                  View All
+              <Link to="/compare">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8">
+                  <Calculator className="h-5 w-5 mr-2" />
+                   View All Products
                 </Button>
-              </Link> */}
+
+              </Link>
             </div>
           </div>
         </div>
