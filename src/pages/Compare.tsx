@@ -179,7 +179,7 @@ const Compare = () => {
         {/* Why Choose Section */}
         <div className="mt-20 text-center">
           <h2 className="text-3xl font-bold text-slate-900 mb-8">
-            Why Compare with Smart Choice?
+            Why Compare with ezee insure?
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">

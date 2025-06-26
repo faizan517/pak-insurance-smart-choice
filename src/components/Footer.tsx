@@ -14,7 +14,7 @@ const Footer = () => {
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold">Smart Choice</span>
+                <span className="text-xl font-bold">ezee insure</span>
                 <span className="text-xs text-slate-400">Insurance Platform</span>
               </div>
             </Link>
@@ -116,7 +116,7 @@ const Footer = () => {
         <div className="border-t border-slate-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-slate-400 text-sm">
-              © 2025 Smart Choice Insurance Platform. All rights reserved.
+              © 2025 ezee insure Insurance Platform. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <Link to="/privacy" className="text-slate-400 hover:text-white text-sm transition-colors duration-200">

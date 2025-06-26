@@ -91,7 +91,7 @@ const Navbar = () => {
               <Shield className="h-6 w-6 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-slate-900">Smart Choice</span>
+              <span className="text-xl font-bold text-slate-900">ezee insure</span>
               <span className="text-xs text-slate-600">Insurance Platform</span>
             </div>
           </Link>

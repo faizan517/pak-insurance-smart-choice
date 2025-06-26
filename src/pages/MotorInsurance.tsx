@@ -286,7 +286,7 @@ const MotorInsurance = () => {
         {/* Features Section */}
         <div className="mt-20">
           <h2 className="text-3xl font-bold text-slate-900 text-center mb-12">
-            Why Choose Motor Insurance with Smart Choice?
+            Why Choose Motor Insurance with ezee insure?
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
