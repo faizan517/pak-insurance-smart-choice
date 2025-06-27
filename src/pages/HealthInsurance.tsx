@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, Heart, Users, Shield, Star, Phone, Clock, Award } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -14,8 +15,54 @@ const HealthInsurance = () => {
     age: "",
     coverage: "",
     members: "",
-    preExisting: ""
+    preExisting: "",
+    name: "",
+    email: "",
+    phone: "",
+    city: ""
   });
+  
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleCompareSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    console.log("Health Insurance form submitted with data:", formData);
+    
+    if (!formData.age || !formData.coverage || !formData.members) {
+      toast({
+        title: "Please fill all required fields",
+        description: "Age, coverage type, and family members are required",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Create quote data for comparison page
+    const quoteData = {
+      insuranceType: "individual-health",
+      name: formData.name || "Health Insurance Customer",
+      email: formData.email || "",
+      phone: formData.phone || "",
+      age: formData.age,
+      city: formData.city || "",
+      familyMembers: formData.members,
+      coverage: formData.coverage,
+      preExisting: formData.preExisting
+    };
+
+    // Store form data in localStorage for the comparison page
+    localStorage.setItem('quoteFormData', JSON.stringify(quoteData));
+    
+    console.log("Navigating to compare page with health insurance data");
+    navigate('/compare');
+    
+    toast({
+      title: "Comparing Health Insurance Plans!",
+      description: "Showing you the best health insurance options..."
+    });
+  };
 
   const plans = [
     {
@@ -100,52 +147,90 @@ const HealthInsurance = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="p-8">
-            <div className="grid md:grid-cols-4 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Your Age</label>
-                <Input 
-                  placeholder="Enter age" 
-                  value={formData.age}
-                  onChange={(e) => setFormData({...formData, age: e.target.value})}
-                  className="h-12"
-                />
+            <form onSubmit={handleCompareSubmit}>
+              <div className="grid md:grid-cols-4 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Your Age *</label>
+                  <Input 
+                    placeholder="Enter age" 
+                    value={formData.age}
+                    onChange={(e) => setFormData({...formData, age: e.target.value})}
+                    className="h-12"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Coverage Type *</label>
+                  <Select value={formData.coverage} onValueChange={(value) => setFormData({...formData, coverage: value})} required>
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Select coverage" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="individual">Individual</SelectItem>
+                      <SelectItem value="family">Family</SelectItem>
+                      <SelectItem value="parents">Parents</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Family Members *</label>
+                  <Select value={formData.members} onValueChange={(value) => setFormData({...formData, members: value})} required>
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Number of members" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1">Just me</SelectItem>
+                      <SelectItem value="2">2 Members</SelectItem>
+                      <SelectItem value="3">3 Members</SelectItem>
+                      <SelectItem value="4">4+ Members</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="flex items-end">
+                  <Button 
+                    type="submit" 
+                    className="w-full h-12 bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-lg font-semibold"
+                  >
+                    Compare Plans
+                  </Button>
+                </div>
               </div>
               
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Coverage Type</label>
-                <Select value={formData.coverage} onValueChange={(value) => setFormData({...formData, coverage: value})}>
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Select coverage" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="individual">Individual</SelectItem>
-                    <SelectItem value="family">Family</SelectItem>
-                    <SelectItem value="parents">Parents</SelectItem>
-                  </SelectContent>
-                </Select>
+              {/* Optional Contact Details */}
+              <div className="grid md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Name</label>
+                  <Input 
+                    placeholder="Enter your name" 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="h-10"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                  <Input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="h-10"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Phone</label>
+                  <Input 
+                    placeholder="+92 300 1234567" 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="h-10"
+                  />
+                </div>
               </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Family Members</label>
-                <Select value={formData.members} onValueChange={(value) => setFormData({...formData, members: value})}>
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Number of members" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1">Just me</SelectItem>
-                    <SelectItem value="2">2 Members</SelectItem>
-                    <SelectItem value="3">3 Members</SelectItem>
-                    <SelectItem value="4">4+ Members</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div className="flex items-end">
-                <Button className="w-full h-12 bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-lg font-semibold">
-                  Compare Plans
-                </Button>
-              </div>
-            </div>
+            </form>
           </CardContent>
         </Card>
 

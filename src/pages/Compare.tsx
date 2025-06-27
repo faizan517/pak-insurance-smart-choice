@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Star, Shield, Phone, Award, Clock, Users } from "lucide-react";
+import { CheckCircle, Star, Shield, Phone, Award, Clock, Users, Heart } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -17,9 +17,95 @@ const Compare = () => {
     }
   }, []);
 
-  const insuranceCompanies = [
+  // Health Insurance specific companies
+  const healthInsuranceCompanies = [
+    {
+      name: "EFU Health Guard",
+      company: "EFU Life Insurance",
+      logo: "EFU",
+      rating: 4.5,
+      premium: "Rs. 25,000",
+      originalPremium: "Rs. 30,000",
+      discount: "17% Online Discount",
+      coverage: "Rs. 500,000",
+      features: [
+        "Hospitalization Coverage",
+        "OPD Benefits",
+        "Maternity Coverage",
+        "Emergency Services",
+        "Pre & Post Hospitalization"
+      ],
+      highlights: ["Most Trusted"],
+      color: "from-blue-500 to-blue-600",
+      trustScore: 95
+    },
+    {
+      name: "Jubilee Family Health",
+      company: "Jubilee Life Insurance",
+      logo: "JLI",
+      rating: 4.7,
+      premium: "Rs. 35,000",
+      originalPremium: "Rs. 40,000",
+      discount: "12% Family Discount",
+      coverage: "Rs. 750,000",
+      features: [
+        "Family Coverage",
+        "Pre-existing Conditions",
+        "Ambulance Service",
+        "Cashless Treatment",
+        "Wellness Programs"
+      ],
+      highlights: ["Highest Rated", "Best Value"],
+      color: "from-green-500 to-green-600",
+      trustScore: 97
+    },
+    {
+      name: "TPL Health Plus",
+      company: "TPL Insurance",
+      logo: "TPL",
+      rating: 4.3,
+      premium: "Rs. 22,000",
+      originalPremium: "Rs. 25,000",
+      discount: "12% Special Offer",
+      coverage: "Rs. 400,000",
+      features: [
+        "Individual Plan",
+        "Room Rent Coverage",
+        "Surgery Coverage",
+        "Medicine Allowance",
+        "Diagnostic Coverage"
+      ],
+      highlights: ["Budget Friendly"],
+      color: "from-red-500 to-pink-600",
+      trustScore: 89
+    },
+    {
+      name: "Adamjee Health Shield",
+      company: "Adamjee Insurance",
+      logo: "AIC",
+      rating: 4.2,
+      premium: "Rs. 28,000",
+      originalPremium: "Rs. 32,000",
+      discount: "13% New Customer",
+      coverage: "Rs. 600,000",
+      features: [
+        "Comprehensive Protection",
+        "Critical Illness Cover",
+        "Medical Emergencies",
+        "Specialist Consultations",
+        "Health Check-ups"
+      ],
+      highlights: ["Comprehensive"],
+      color: "from-purple-500 to-purple-600",
+      trustScore: 91
+    }
+  ];
+
+  // Generic insurance companies for other types
+  const genericInsuranceCompanies = [
     {
       name: "EFU General Insurance",
+      company: "EFU General",
       logo: "EFU",
       rating: 4.5,
       premium: "Rs. 12,500",
@@ -38,6 +124,7 @@ const Compare = () => {
     },
     {
       name: "Jubilee General Insurance",
+      company: "Jubilee General",
       logo: "JGI",
       rating: 4.3,
       premium: "Rs. 14,200",
@@ -56,6 +143,7 @@ const Compare = () => {
     },
     {
       name: "TPL Insurance",
+      company: "TPL Insurance",
       logo: "TPL",
       rating: 4.6,
       premium: "Rs. 13,800",
@@ -63,7 +151,7 @@ const Compare = () => {
       discount: "12% Loyalty Discount",
       features: [
         "Zero Depreciation",
-        "Accident Forgiveness",
+        "Accident Forgiveness", 
         "Premium Support",
         "Quick Claims Processing",
         "Mobile App Access"
@@ -71,62 +159,26 @@ const Compare = () => {
       highlights: ["Highest Rated"],
       color: "from-purple-500 to-purple-600",
       trustScore: 97
-    },
-    {
-      name: "Adamjee Insurance",
-      logo: "AIC",
-      rating: 4.1,
-      premium: "Rs. 15,600",
-      originalPremium: "Rs. 17,200",
-      discount: "10% Corporate Discount",
-      features: [
-        "Comprehensive Protection",
-        "Personal Accident Cover",
-        "Medical Expenses",
-        "Legal Liability",
-        "Workshop Network"
-      ],
-      highlights: ["Established Leader"],
-      color: "from-orange-500 to-red-500",
-      trustScore: 89
-    },
-    {
-      name: "United Insurance",
-      logo: "UIC",
-      rating: 4.4,
-      premium: "Rs. 13,200",
-      originalPremium: "Rs. 15,500",
-      discount: "18% Special Offer",
-      features: [
-        "Motor Insurance",
-        "Personal Accident",
-        "Theft Protection",
-        "Fire & Natural Disasters",
-        "Third Party Liability"
-      ],
-      highlights: ["Great Savings"],
-      color: "from-teal-500 to-cyan-500",
-      trustScore: 91
-    },
-    {
-      name: "Pak Qatar Takaful",
-      logo: "PQT",
-      rating: 4.2,
-      premium: "Rs. 14,500",
-      originalPremium: "Rs. 16,800",
-      discount: "14% Takaful Discount",
-      features: [
-        "Shariah Compliant",
-        "Takaful Benefits",
-        "Ethical Investment",
-        "Community Support",
-        "Transparent Process"
-      ],
-      highlights: ["Shariah Compliant"],
-      color: "from-emerald-500 to-green-600",
-      trustScore: 90
     }
   ];
+
+  // Choose companies based on insurance type
+  const getInsuranceCompanies = () => {
+    if (formData?.insuranceType === 'individual-health' || formData?.insuranceType === 'group-health') {
+      return healthInsuranceCompanies;
+    }
+    return genericInsuranceCompanies;
+  };
+
+  const insuranceCompanies = getInsuranceCompanies();
+
+  const getInsuranceTypeDisplay = () => {
+    if (formData?.insuranceType === 'individual-health') return 'Health Insurance';
+    if (formData?.insuranceType === 'group-health') return 'Group Health Insurance';
+    if (formData?.insuranceType === 'travel') return 'Travel Insurance';
+    if (formData?.insuranceType === 'motor') return 'Motor Insurance';
+    return formData?.insuranceType || 'Insurance';
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -135,17 +187,47 @@ const Compare = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="text-center mb-12">
+          <div className="flex justify-center mb-6">
+            <div className="bg-gradient-to-r from-[#1D9785] to-[#2ABFAF] p-4 rounded-2xl">
+              {formData?.insuranceType?.includes('health') ? (
+                <Heart className="h-12 w-12 text-white" />
+              ) : (
+                <Shield className="h-12 w-12 text-white" />
+              )}
+            </div>
+          </div>
           <h1 className="text-4xl md:text-5xl font-bold text-[#113040] mb-4">
-            Compare Insurance Quotes
+            Compare {getInsuranceTypeDisplay()} Quotes
           </h1>
           <p className="text-xl text-[#333333] max-w-3xl mx-auto">
-            {formData ? `Hello ${formData.name}! ` : ''}
-            Here are the best insurance options from Pakistan's leading insurers
+            {formData ? `Hello ${formData.name || 'Customer'}! ` : ''}
+            Here are the best {getInsuranceTypeDisplay().toLowerCase()} options from Pakistan's leading insurers
           </p>
           {formData && (
-            <div className="mt-4 text-sm text-[#888888]">
-              Insurance Type: <span className="font-semibold text-[#1D9785]">{formData.insuranceType}</span>
-              {formData.city && ` • Location: ${formData.city}`}
+            <div className="mt-6 p-4 bg-white rounded-lg shadow-md inline-block">
+              <div className="flex flex-wrap gap-4 text-sm">
+                <span className="flex items-center">
+                  <Shield className="h-4 w-4 mr-2 text-[#1D9785]" />
+                  <strong>Type:</strong> {getInsuranceTypeDisplay()}
+                </span>
+                {formData.age && (
+                  <span className="flex items-center">
+                    <Users className="h-4 w-4 mr-2 text-[#1D9785]" />
+                    <strong>Age:</strong> {formData.age}
+                  </span>
+                )}
+                {formData.familyMembers && (
+                  <span className="flex items-center">
+                    <Users className="h-4 w-4 mr-2 text-[#1D9785]" />
+                    <strong>Members:</strong> {formData.familyMembers}
+                  </span>
+                )}
+                {formData.city && (
+                  <span className="flex items-center">
+                    <strong>City:</strong> {formData.city}
+                  </span>
+                )}
+              </div>
             </div>
           )}
         </div>
@@ -201,8 +283,9 @@ const Compare = () => {
                 <CardTitle className="text-xl font-bold text-[#113040] mb-2">
                   {company.name}
                 </CardTitle>
+                <p className="text-sm text-[#888888] mb-2">{company.company}</p>
                 
-                <div className="flex items-center space-x-2 mb-2">
+                <div className="flex items-center space-x-2 mb-4">
                   {company.highlights.map((highlight, idx) => (
                     <Badge key={idx} variant="outline" className="text-xs text-[#1D9785] border-[#1D9785]">
                       {highlight}
@@ -211,7 +294,7 @@ const Compare = () => {
                 </div>
                 
                 <div className="text-center py-4 bg-gradient-to-r from-[#1D9785]/10 to-[#2ABFAF]/10 rounded-lg">
-                  <div className="flex items-center justify-center space-x-2 mb-1">
+                  <div className="flex items-center justify-center space-x-2 mb-2">
                     {company.originalPremium && (
                       <span className="text-lg text-[#888888] line-through">
                         {company.originalPremium}
@@ -221,9 +304,14 @@ const Compare = () => {
                       {company.premium}
                     </div>
                   </div>
-                  <Badge className="bg-gradient-to-r from-[#0F6C4A] to-[#1D9785] text-white">
+                  {company.coverage && (
+                    <Badge className="bg-gradient-to-r from-[#0F6C4A] to-[#1D9785] text-white mb-2">
+                      Coverage: {company.coverage}
+                    </Badge>
+                  )}
+                  <div className="text-sm text-[#1D9785] font-medium">
                     {company.discount}
-                  </Badge>
+                  </div>
                 </div>
               </CardHeader>
               
