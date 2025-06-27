@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Car, Shield, CheckCircle, Star, Phone, Calculator } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -18,10 +20,14 @@ const MotorInsurance = () => {
     engine: "",
     city: "",
     previousClaims: "",
-    coverageType: ""
+    coverageType: "",
+    name: "",
+    email: "",
+    phone: ""
   });
 
-  const [showQuotes, setShowQuotes] = useState(false);
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const carMakes = [
     "Toyota", "Honda", "Suzuki", "Hyundai", "KIA", "Nissan", "Mitsubishi", "Mercedes", "BMW", "Audi"
@@ -31,43 +37,46 @@ const MotorInsurance = () => {
     "Karachi", "Lahore", "Islamabad", "Faisalabad", "Rawalpindi", "Multan", "Peshawar", "Quetta"
   ];
 
-  const mockQuotes = [
-    {
-      insurer: "Jubilee General Insurance",
-      logo: "JGI",
-      premium: "Rs. 15,500",
-      originalPremium: "Rs. 17,200",
-      discount: "10% Online Discount",
-      rating: 4.5,
-      features: ["Third Party Coverage", "Own Damage Protection", "24/7 Claims Support", "Roadside Assistance"],
-      color: "from-blue-500 to-blue-600"
-    },
-    {
-      insurer: "EFU General Insurance",
-      logo: "EFU", 
-      premium: "Rs. 14,200",
-      originalPremium: "Rs. 16,700",
-      discount: "15% First Year Discount",
-      rating: 4.3,
-      features: ["Comprehensive Coverage", "Natural Disasters", "Theft Protection", "Free Towing Service"],
-      color: "from-green-500 to-green-600"
-    },
-    {
-      insurer: "TPL Insurance",
-      logo: "TPL",
-      premium: "Rs. 16,800", 
-      originalPremium: "Rs. 18,500",
-      discount: "8% Multi-Policy Discount",
-      rating: 4.6,
-      features: ["Zero Depreciation", "Accident Forgiveness", "Premium Support", "Quick Claims Settlement"],
-      color: "from-purple-500 to-purple-600"
+  const handleGetQuotes = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    console.log("Motor Insurance form submitted with data:", formData);
+    
+    if (!formData.vehicleType || !formData.make || !formData.city) {
+      toast({
+        title: "Please fill all required fields",
+        description: "Vehicle type, make, and city are required",
+        variant: "destructive"
+      });
+      return;
     }
-  ];
 
-  const handleGetQuotes = () => {
-    if (formData.vehicleType && formData.make && formData.city) {
-      setShowQuotes(true);
-    }
+    // Create quote data for comparison page
+    const quoteData = {
+      insuranceType: "motor",
+      name: formData.name || "Motor Insurance Customer",
+      email: formData.email || "",
+      phone: formData.phone || "",
+      city: formData.city,
+      vehicleType: formData.vehicleType,
+      make: formData.make,
+      model: formData.model,
+      year: formData.year,
+      engine: formData.engine,
+      coverageType: formData.coverageType,
+      previousClaims: formData.previousClaims
+    };
+
+    // Store form data in localStorage for the comparison page
+    localStorage.setItem('quoteFormData', JSON.stringify(quoteData));
+    
+    console.log("Navigating to compare page with motor insurance data");
+    navigate('/compare');
+    
+    toast({
+      title: "Comparing Motor Insurance Plans!",
+      description: "Showing you the best motor insurance options..."
+    });
   };
 
   return (
@@ -103,185 +112,143 @@ const MotorInsurance = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="p-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Vehicle Type</label>
-                <Select value={formData.vehicleType} onValueChange={(value) => setFormData({...formData, vehicleType: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select vehicle type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="car">Car</SelectItem>
-                    <SelectItem value="motorcycle">Motorcycle</SelectItem>
-                    <SelectItem value="suv">SUV</SelectItem>
-                    <SelectItem value="pickup">Pickup Truck</SelectItem>
-                  </SelectContent>
-                </Select>
+            <form onSubmit={handleGetQuotes}>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Vehicle Type *</label>
+                  <Select value={formData.vehicleType} onValueChange={(value) => setFormData({...formData, vehicleType: value})} required>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select vehicle type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="car">Car</SelectItem>
+                      <SelectItem value="motorcycle">Motorcycle</SelectItem>
+                      <SelectItem value="suv">SUV</SelectItem>
+                      <SelectItem value="pickup">Pickup Truck</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Make *</label>
+                  <Select value={formData.make} onValueChange={(value) => setFormData({...formData, make: value})} required>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select make" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {carMakes.map((make) => (
+                        <SelectItem key={make} value={make.toLowerCase()}>{make}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Model Year</label>
+                  <Input 
+                    placeholder="e.g., 2020" 
+                    value={formData.year}
+                    onChange={(e) => setFormData({...formData, year: e.target.value})}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Engine (CC)</label>
+                  <Input 
+                    placeholder="e.g., 1300" 
+                    value={formData.engine}
+                    onChange={(e) => setFormData({...formData, engine: e.target.value})}
+                  />
+                </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Make</label>
-                <Select value={formData.make} onValueChange={(value) => setFormData({...formData, make: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select make" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {carMakes.map((make) => (
-                      <SelectItem key={make} value={make.toLowerCase()}>{make}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <div className="grid md:grid-cols-3 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">City *</label>
+                  <Select value={formData.city} onValueChange={(value) => setFormData({...formData, city: value})} required>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your city" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {cities.map((city) => (
+                        <SelectItem key={city} value={city.toLowerCase()}>{city}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Coverage Type</label>
+                  <Select value={formData.coverageType} onValueChange={(value) => setFormData({...formData, coverageType: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select coverage" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="comprehensive">Comprehensive</SelectItem>
+                      <SelectItem value="thirdparty">Third Party Only</SelectItem>
+                      <SelectItem value="thirdpartyfire">Third Party + Fire & Theft</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Previous Claims</label>
+                  <Select value={formData.previousClaims} onValueChange={(value) => setFormData({...formData, previousClaims: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Claims history" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">No Claims</SelectItem>
+                      <SelectItem value="1">1 Claim</SelectItem>
+                      <SelectItem value="2">2 Claims</SelectItem>
+                      <SelectItem value="3+">3+ Claims</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Model Year</label>
-                <Input 
-                  placeholder="e.g., 2020" 
-                  value={formData.year}
-                  onChange={(e) => setFormData({...formData, year: e.target.value})}
-                />
+              {/* Optional Contact Details */}
+              <div className="grid md:grid-cols-3 gap-4 mb-8 pt-4 border-t border-gray-200">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Name</label>
+                  <Input 
+                    placeholder="Enter your name" 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                  <Input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Phone</label>
+                  <Input 
+                    placeholder="+92 300 1234567" 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  />
+                </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Engine (CC)</label>
-                <Input 
-                  placeholder="e.g., 1300" 
-                  value={formData.engine}
-                  onChange={(e) => setFormData({...formData, engine: e.target.value})}
-                />
+              <div className="text-center">
+                <Button 
+                  type="submit"
+                  size="lg" 
+                  className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 px-12"
+                >
+                  <Calculator className="h-5 w-5 mr-2" />
+                  Compare Plans
+                </Button>
               </div>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">City</label>
-                <Select value={formData.city} onValueChange={(value) => setFormData({...formData, city: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select your city" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {cities.map((city) => (
-                      <SelectItem key={city} value={city.toLowerCase()}>{city}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Coverage Type</label>
-                <Select value={formData.coverageType} onValueChange={(value) => setFormData({...formData, coverageType: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select coverage" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="comprehensive">Comprehensive</SelectItem>
-                    <SelectItem value="thirdparty">Third Party Only</SelectItem>
-                    <SelectItem value="thirdpartyfire">Third Party + Fire & Theft</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Previous Claims</label>
-                <Select value={formData.previousClaims} onValueChange={(value) => setFormData({...formData, previousClaims: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Claims history" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="none">No Claims</SelectItem>
-                    <SelectItem value="1">1 Claim</SelectItem>
-                    <SelectItem value="2">2 Claims</SelectItem>
-                    <SelectItem value="3+">3+ Claims</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 px-12"
-                onClick={handleGetQuotes}
-              >
-                <Calculator className="h-5 w-5 mr-2" />
-                Get Instant Quotes
-              </Button>
-            </div>
+            </form>
           </CardContent>
         </Card>
-
-        {/* Quotes Results */}
-        {showQuotes && (
-          <div className="space-y-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                Your Motor Insurance Quotes
-              </h2>
-              <p className="text-slate-600">
-                Compare these personalized quotes and choose the best coverage for your vehicle
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8">
-              {mockQuotes.map((quote, index) => (
-                <Card key={index} className="relative hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden">
-                  {index === 1 && (
-                    <Badge className="absolute top-4 right-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white z-10">
-                      Best Value
-                    </Badge>
-                  )}
-                  
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${quote.color} flex items-center justify-center`}>
-                        <span className="text-white font-bold text-lg">{quote.logo}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                        <span className="text-sm font-medium">{quote.rating}</span>
-                      </div>
-                    </div>
-                    
-                    <CardTitle className="text-xl font-bold text-slate-900">
-                      {quote.insurer}
-                    </CardTitle>
-                    
-                    <div className="text-center py-4">
-                      <div className="flex items-center justify-center space-x-2 mb-2">
-                        <span className="text-lg text-slate-500 line-through">{quote.originalPremium}</span>
-                        <span className="text-3xl font-bold text-slate-900">{quote.premium}</span>
-                      </div>
-                      <Badge variant="outline" className="text-green-600 border-green-600">
-                        {quote.discount}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  
-                  <CardContent className="pt-0">
-                    <div className="space-y-3 mb-6">
-                      {quote.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center space-x-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span className="text-sm text-slate-600">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <Button className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700">
-                        Buy Now - {quote.premium}
-                      </Button>
-                      <Button variant="outline" className="w-full">
-                        <Phone className="h-4 w-4 mr-2" />
-                        Call for Details
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Features Section */}
         <div className="mt-20">

@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, Plane, MapPin, Calendar, Star, Shield, Globe, Clock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -14,44 +16,54 @@ const TravelInsurance = () => {
     destination: "",
     duration: "",
     travelers: "",
-    age: ""
+    age: "",
+    name: "",
+    email: "",
+    phone: "",
+    city: ""
   });
 
-  const plans = [
-    {
-      name: "EFU Schengen Visa",
-      company: "EFU General",
-      premium: "Rs. 8,500",
-      coverage: "€30,000",
-      features: ["Medical Emergency", "Trip Cancellation", "Baggage Loss", "Visa Support"],
-      rating: 4.6,
-      reviews: "1.9k",
-      color: "from-blue-500 to-blue-600",
-      popular: false
-    },
-    {
-      name: "Jubilee Global Travel",
-      company: "Jubilee General",
-      premium: "Rs. 12,000",
-      coverage: "$50,000", 
-      features: ["Worldwide Coverage", "Adventure Sports", "Business Travel", "24/7 Assistance"],
-      rating: 4.8,
-      reviews: "2.7k",
-      color: "from-green-500 to-emerald-600",
-      popular: true
-    },
-    {
-      name: "TPL Hajj Umrah",
-      company: "TPL Insurance",
-      premium: "Rs. 6,500",
-      coverage: "$25,000",
-      features: ["Pilgrimage Coverage", "Medical Treatment", "Flight Delay", "Lost Passport"],
-      rating: 4.4,
-      reviews: "1.5k",
-      color: "from-purple-500 to-indigo-600",
-      popular: false
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleGetQuotes = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    console.log("Travel Insurance form submitted with data:", formData);
+    
+    if (!formData.destination || !formData.duration || !formData.travelers) {
+      toast({
+        title: "Please fill all required fields",
+        description: "Destination, duration, and number of travelers are required",
+        variant: "destructive"
+      });
+      return;
     }
-  ];
+
+    // Create quote data for comparison page
+    const quoteData = {
+      insuranceType: "travel",
+      name: formData.name || "Travel Insurance Customer",
+      email: formData.email || "",
+      phone: formData.phone || "",
+      city: formData.city || "",
+      destination: formData.destination,
+      duration: formData.duration,
+      travelers: formData.travelers,
+      age: formData.age
+    };
+
+    // Store form data in localStorage for the comparison page
+    localStorage.setItem('quoteFormData', JSON.stringify(quoteData));
+    
+    console.log("Navigating to compare page with travel insurance data");
+    navigate('/compare');
+    
+    toast({
+      title: "Comparing Travel Insurance Plans!",
+      description: "Showing you the best travel insurance options..."
+    });
+  };
 
   const benefits = [
     { icon: Globe, title: "Worldwide Coverage", desc: "Protection in 150+ countries globally" },
@@ -100,55 +112,102 @@ const TravelInsurance = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="p-8">
-            <div className="grid md:grid-cols-4 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Destination</label>
-                <Select value={formData.destination} onValueChange={(value) => setFormData({...formData, destination: value})}>
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Select destination" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="schengen">Schengen Countries</SelectItem>
-                    <SelectItem value="usa">USA/Canada</SelectItem>
-                    <SelectItem value="uk">UK</SelectItem>
-                    <SelectItem value="asia">Asia</SelectItem>
-                    <SelectItem value="worldwide">Worldwide</SelectItem>
-                  </SelectContent>
-                </Select>
+            <form onSubmit={handleGetQuotes}>
+              <div className="grid md:grid-cols-4 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Destination *</label>
+                  <Select value={formData.destination} onValueChange={(value) => setFormData({...formData, destination: value})} required>
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Select destination" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="schengen">Schengen Countries</SelectItem>
+                      <SelectItem value="usa">USA/Canada</SelectItem>
+                      <SelectItem value="uk">UK</SelectItem>
+                      <SelectItem value="asia">Asia</SelectItem>
+                      <SelectItem value="worldwide">Worldwide</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Trip Duration *</label>
+                  <Select value={formData.duration} onValueChange={(value) => setFormData({...formData, duration: value})} required>
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Trip length" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="7">Up to 7 days</SelectItem>
+                      <SelectItem value="15">Up to 15 days</SelectItem>
+                      <SelectItem value="30">Up to 30 days</SelectItem>
+                      <SelectItem value="90">Up to 90 days</SelectItem>
+                      <SelectItem value="annual">Annual Multi-trip</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Travelers *</label>
+                  <Input 
+                    placeholder="Number of travelers" 
+                    value={formData.travelers}
+                    onChange={(e) => setFormData({...formData, travelers: e.target.value})}
+                    className="h-12"
+                    required
+                  />
+                </div>
+                
+                <div className="flex items-end">
+                  <Button 
+                    type="submit"
+                    className="w-full h-12 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-lg font-semibold"
+                  >
+                    Compare Plans
+                  </Button>
+                </div>
               </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Trip Duration</label>
-                <Select value={formData.duration} onValueChange={(value) => setFormData({...formData, duration: value})}>
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Trip length" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="7">Up to 7 days</SelectItem>
-                    <SelectItem value="15">Up to 15 days</SelectItem>
-                    <SelectItem value="30">Up to 30 days</SelectItem>
-                    <SelectItem value="90">Up to 90 days</SelectItem>
-                    <SelectItem value="annual">Annual Multi-trip</SelectItem>
-                  </SelectContent>
-                </Select>
+
+              {/* Optional Contact Details */}
+              <div className="grid md:grid-cols-4 gap-4 pt-4 border-t border-gray-200">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Name</label>
+                  <Input 
+                    placeholder="Enter your name" 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="h-10"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Age</label>
+                  <Input 
+                    placeholder="Enter your age" 
+                    value={formData.age}
+                    onChange={(e) => setFormData({...formData, age: e.target.value})}
+                    className="h-10"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                  <Input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="h-10"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Phone</label>
+                  <Input 
+                    placeholder="+92 300 1234567" 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="h-10"
+                  />
+                </div>
               </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Travelers</label>
-                <Input 
-                  placeholder="Number of travelers" 
-                  value={formData.travelers}
-                  onChange={(e) => setFormData({...formData, travelers: e.target.value})}
-                  className="h-12"
-                />
-              </div>
-              
-              <div className="flex items-end">
-                <Button className="w-full h-12 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-lg font-semibold">
-                  Get Quotes
-                </Button>
-              </div>
-            </div>
+            </form>
           </CardContent>
         </Card>
 
@@ -170,76 +229,6 @@ const TravelInsurance = () => {
                   {benefit.desc}
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Travel Plans */}
-        <div className="space-y-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Popular Travel Plans
-            </h2>
-            <p className="text-xl text-slate-600">
-              Choose the perfect plan for your destination and travel needs
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-3 gap-8">
-            {plans.map((plan, index) => (
-              <Card key={index} className={`hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg relative ${plan.popular ? 'ring-2 ring-green-500' : ''}`}>
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-green-500 hover:bg-green-500 text-white px-4 py-1">
-                      Most Popular
-                    </Badge>
-                  </div>
-                )}
-                
-                <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${plan.color} flex items-center justify-center`}>
-                      <Plane className="h-8 w-8 text-white" />
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center space-x-1 justify-end">
-                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                        <span className="text-sm font-medium">{plan.rating}</span>
-                      </div>
-                      <span className="text-xs text-slate-500">({plan.reviews} reviews)</span>
-                    </div>
-                  </div>
-                  
-                  <CardTitle className="text-xl font-bold text-slate-900">
-                    {plan.name}
-                  </CardTitle>
-                  <p className="text-sm text-slate-500">{plan.company}</p>
-                  
-                  <div className="text-center py-4">
-                    <div className="text-3xl font-bold text-slate-900 mb-1">
-                      {plan.premium}
-                    </div>
-                    <Badge variant="outline" className="text-green-600 border-green-600">
-                      Coverage: {plan.coverage}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="pt-0">
-                  <div className="space-y-3 mb-6">
-                    {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                        <span className="text-sm text-slate-600">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <Button className={`w-full bg-gradient-to-r ${plan.color} hover:opacity-90 h-12 text-lg font-semibold`}>
-                    Select Plan
-                  </Button>
-                </CardContent>
-              </Card>
             ))}
           </div>
         </div>

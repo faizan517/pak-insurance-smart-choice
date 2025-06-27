@@ -78,30 +78,10 @@ const Compare = () => {
       highlights: ["Budget Friendly"],
       color: "from-red-500 to-pink-600",
       trustScore: 89
-    },
-    {
-      name: "Adamjee Health Shield",
-      company: "Adamjee Insurance",
-      logo: "AIC",
-      rating: 4.2,
-      premium: "Rs. 28,000",
-      originalPremium: "Rs. 32,000",
-      discount: "13% New Customer",
-      coverage: "Rs. 600,000",
-      features: [
-        "Comprehensive Protection",
-        "Critical Illness Cover",
-        "Medical Emergencies",
-        "Specialist Consultations",
-        "Health Check-ups"
-      ],
-      highlights: ["Comprehensive"],
-      color: "from-purple-500 to-purple-600",
-      trustScore: 91
     }
   ];
 
-  // Generic insurance companies for other types
+  // Generic insurance companies for other types (Motor, Travel, etc.)
   const genericInsuranceCompanies = [
     {
       name: "EFU General Insurance",
@@ -111,6 +91,7 @@ const Compare = () => {
       premium: "Rs. 12,500",
       originalPremium: "Rs. 15,000",
       discount: "20% Online Discount",
+      coverage: "Up to Rs. 1,000,000",
       features: [
         "Comprehensive Coverage",
         "24/7 Customer Support",
@@ -130,6 +111,7 @@ const Compare = () => {
       premium: "Rs. 14,200",
       originalPremium: "Rs. 16,500",
       discount: "15% First Year Discount",
+      coverage: "Up to Rs. 800,000",
       features: [
         "Third Party Coverage",
         "Own Damage Protection",
@@ -149,6 +131,7 @@ const Compare = () => {
       premium: "Rs. 13,800",
       originalPremium: "Rs. 15,800",
       discount: "12% Loyalty Discount",
+      coverage: "Up to Rs. 1,200,000",
       features: [
         "Zero Depreciation",
         "Accident Forgiveness", 
