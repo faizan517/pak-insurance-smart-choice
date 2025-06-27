@@ -6,6 +6,7 @@ import { Shield, Car, Heart, Plane, User, Calculator, CheckCircle, Phone, Clock,
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import QuoteForm from "@/components/QuoteForm";
 
 const Index = () => {
   const insuranceServices = [
@@ -187,6 +188,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-[#4CB2E1]/10">
       <Navbar />
+      <QuoteForm />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#113040] via-[#1D9785] to-[#0F6C4A] text-white overflow-hidden">
@@ -207,12 +209,14 @@ const Index = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-8 justify-center pt-16">
-              <Link to="/compare">
-                <Button size="lg" className="bg-gradient-to-r from-[#F46416] to-[#2ABFAF] text-white hover:from-[#F46416]/90 hover:to-[#2ABFAF]/90 font-bold px-12 py-6 text-lg rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
-                  <Calculator className="h-6 w-6 mr-3" />
-                  Get Your Free Quote
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-[#F46416] to-[#2ABFAF] text-white hover:from-[#F46416]/90 hover:to-[#2ABFAF]/90 font-bold px-12 py-6 text-lg rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
+                onClick={() => window.dispatchEvent(new CustomEvent('openQuoteForm'))}
+              >
+                <Calculator className="h-6 w-6 mr-3" />
+                Get Your Free Quote
+              </Button>
             </div>
           </div>
         </div>
@@ -258,7 +262,12 @@ const Index = () => {
                 Your Insurance Superhero
               </span>
             </h2>
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto mb-12">
+              <img 
+                src="/lovable-uploads/a8d9903f-5a71-47b8-9998-0eafcbaab10c.png" 
+                alt="Asaan Bhai - Your Insurance Superhero" 
+                className="w-80 h-auto mx-auto mb-8 hover:scale-105 transition-transform duration-300"
+              />
               <p className="text-xl text-[#333333] leading-relaxed mb-8">
                 Say hello to Asaan Bhai, our friendly shield mascot who brings Ezee Insure's promise to life! 
                 With his trusty umbrella hat and checklist in hand, Asaan Bhai guides you through every step—making 
@@ -413,12 +422,14 @@ const Index = () => {
           <p className="text-xl text-slate-200 mb-16 max-w-3xl mx-auto leading-relaxed">
             Take the Ezee Step Today
           </p>
-          <Link to="/compare">
-            <Button size="lg" className="bg-gradient-to-r from-[#F46416] to-[#2ABFAF] text-white hover:from-[#F46416]/90 hover:to-[#2ABFAF]/90 font-bold px-16 py-6 text-xl rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
-              <Calculator className="h-6 w-6 mr-3" />
-              Get Your Free Quote
-            </Button>
-          </Link>
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-[#F46416] to-[#2ABFAF] text-white hover:from-[#F46416]/90 hover:to-[#2ABFAF]/90 font-bold px-16 py-6 text-xl rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
+            onClick={() => window.dispatchEvent(new CustomEvent('openQuoteForm'))}
+          >
+            <Calculator className="h-6 w-6 mr-3" />
+            Get Your Free Quote
+          </Button>
         </div>
       </section>
 
