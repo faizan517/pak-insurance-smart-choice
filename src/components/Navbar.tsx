@@ -13,9 +13,12 @@ const Navbar = () => {
     { name: "Individual & Family", href: "/health" },
     { name: "Travel", href: "/travel" },
     { name: "Motor", href: "/motor" },
-    { name: "Home", href: "/home" },
-    { name: "Specialized", href: "/specialized" }
   ];
+
+  const handleGetQuote = () => {
+    console.log("Get Quote button clicked");
+    window.dispatchEvent(new CustomEvent('openQuoteForm'));
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#EEEEEE] shadow-sm">
@@ -52,7 +55,7 @@ const Navbar = () => {
             <Button 
               size="sm" 
               className="bg-gradient-to-r from-[#1D9785] to-[#2ABFAF] hover:from-[#1D9785]/90 hover:to-[#2ABFAF]/90 text-white font-medium"
-              onClick={() => window.dispatchEvent(new CustomEvent('openQuoteForm'))}
+              onClick={handleGetQuote}
             >
               Get Quote
             </Button>
@@ -87,7 +90,7 @@ const Navbar = () => {
                     className="w-full bg-gradient-to-r from-[#1D9785] to-[#2ABFAF] hover:from-[#1D9785]/90 hover:to-[#2ABFAF]/90 text-white"
                     onClick={() => {
                       setIsOpen(false);
-                      window.dispatchEvent(new CustomEvent('openQuoteForm'));
+                      handleGetQuote();
                     }}
                   >
                     Get Quote

@@ -23,13 +23,18 @@ const QuoteForm = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    const handleOpenForm = () => setIsOpen(true);
+    const handleOpenForm = () => {
+      console.log("Quote form opening");
+      setIsOpen(true);
+    };
     window.addEventListener('openQuoteForm', handleOpenForm);
     return () => window.removeEventListener('openQuoteForm', handleOpenForm);
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    console.log("Form submitted with data:", formData);
     
     if (!formData.insuranceType || !formData.name || !formData.email || !formData.phone) {
       toast({
@@ -42,6 +47,7 @@ const QuoteForm = () => {
     // Store form data in localStorage for the comparison page
     localStorage.setItem('quoteFormData', JSON.stringify(formData));
     
+    console.log("Navigating to compare page");
     setIsOpen(false);
     navigate('/compare');
     
@@ -52,6 +58,7 @@ const QuoteForm = () => {
   };
 
   const handleInputChange = (field: string, value: string) => {
+    console.log(`Updating ${field} to ${value}`);
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
