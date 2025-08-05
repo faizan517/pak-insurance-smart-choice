@@ -42,7 +42,7 @@ const ScrollToTop = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+    <div>
       <Toaster />
       <Sonner />
       <BrowserRouter>
@@ -126,7 +126,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </TooltipProvider>
+    </div>
   </QueryClientProvider>
 );
 

@@ -101,7 +101,6 @@ const QuoteForm = ({ insuranceType, open, onOpenChange, insuranceTypeLabel }: Qu
               Insurance Type *
             </Label>
             <Select
-              id="insuranceType"
               value={formData.insuranceType}
               onValueChange={v => handleInputChange('insuranceType', v)}
               disabled={!!insuranceType}
@@ -159,7 +158,7 @@ const QuoteForm = ({ insuranceType, open, onOpenChange, insuranceTypeLabel }: Qu
           {(formData.insuranceType === 'individual-health' || formData.insuranceType === 'group-health') && (
             <div className="space-y-2">
               <Label htmlFor="familyMembers" className="text-sm font-medium text-[#333333]">Number of Family Members</Label>
-              <Select id="familyMembers" value={formData.familyMembers} onValueChange={v => handleInputChange('familyMembers', v)}>
+              <Select value={formData.familyMembers} onValueChange={v => handleInputChange('familyMembers', v)}>
                 <SelectTrigger><SelectValue placeholder="Select members" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="1">1</SelectItem>
