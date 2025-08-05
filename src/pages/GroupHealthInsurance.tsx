@@ -1,311 +1,138 @@
-
 import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Users, Shield, Calculator, CheckCircle, Heart, Phone, Clock, Award } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Hospital, Stethoscope, ShieldCheck, AlertTriangle, HeartPulse, Syringe, HeartHandshake, ClipboardList, CheckCircle2, Phone, ArrowBigRightDash } from "lucide-react";
+import QuoteForm from "@/components/QuoteForm";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import GroupHealthQuoteForm from "@/components/GroupHealthQuoteForm";
 
 const GroupHealthInsurance = () => {
-  const [formData, setFormData] = useState({
-    companySize: "",
-    industry: "",
-    employees: "",
-    city: "",
-    companyName: "",
-    contactPerson: "",
-    email: "",
-    phone: "",
-    existingPolicy: ""
-  });
-
+  const [showQuoteForm, setShowQuoteForm] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleCompareSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    console.log("Group Health Insurance form submitted with data:", formData);
-    
-    if (!formData.companySize || !formData.employees || !formData.city) {
-      toast({
-        title: "Please fill all required fields",
-        description: "Company size, number of employees, and city are required",
-        variant: "destructive"
-      });
-      return;
-    }
+  const coverages = [
+    { title: "In-Patient Hospitalization", description: "Coverage for room, boarding, ICU, and hospital expenses.", icon: <Hospital className="w-6 h-6 text-[#F46416]" /> },
+    { title: "Major Medical Insurance", description: "High-limit protection for critical illnesses and surgeries.", icon: <ShieldCheck className="w-6 h-6 text-[#F46416]" /> },
+    { title: "Daycare Procedures & Surgeries", description: "Benefits for treatments not requiring an overnight stay.", icon: <Syringe className="w-6 h-6 text-[#F46416]" /> },
+    { title: "Specialized Investigations in OPD", description: "Diagnostics coverage for MRIs, CT scans, and much more.", icon: <ClipboardList className="w-6 h-6 text-[#F46416]" /> },
+    { title: "Emergency Accidental Treatment", description: "Immediate care for accidental injuries.", icon: <AlertTriangle className="w-6 h-6 text-[#F46416]" /> },
+    { title: "Out-Patient (OPD) Services", description: "Optional coverage for clinic visits and doctor consultations.", icon: <Stethoscope className="w-6 h-6 text-[#F46416]" /> },
+    { title: "Pre & Post Hospitalization", description: "Expenses before and after inpatient treatment.", icon: <ClipboardList className="w-6 h-6 text-[#F46416]" /> },
+    { title: "Maternity Benefits", description: "Coverage for pregnancy and childbirth-related costs.", icon: <HeartPulse className="w-6 h-6 text-[#F46416]" /> },
+    { title: "Non-Accidental Medical Emergencies", description: "Emergency treatments for sudden illnesses.", icon: <AlertTriangle className="w-6 h-6 text-[#F46416]" /> },
+    { title: "Wellness Programs", description: "Annual health screenings, preventive care, and telehealth access.", icon: <HeartHandshake className="w-6 h-6 text-[#F46416]" /> },
+  ];
 
-    // Create quote data for comparison page
-    const quoteData = {
-      insuranceType: "group-health",
-      name: formData.contactPerson || formData.companyName || "Group Health Customer",
-      email: formData.email || "",
-      phone: formData.phone || "",
-      city: formData.city,
-      companySize: formData.companySize,
-      industry: formData.industry,
-      employees: formData.employees,
-      companyName: formData.companyName,
-      existingPolicy: formData.existingPolicy
-    };
-
-    // Store form data in localStorage for the comparison page
-    localStorage.setItem('quoteFormData', JSON.stringify(quoteData));
-    
-    console.log("Navigating to compare page with group health insurance data");
-    navigate('/compare');
-    
-    toast({
-      title: "Comparing Group Health Insurance Plans!",
-      description: "Showing you the best group health insurance options..."
-    });
-  };
-
-  const benefits = [
-    { icon: Users, title: "Employee Coverage", desc: "Comprehensive health benefits for all employees" },
-    { icon: Shield, title: "Corporate Rates", desc: "Special discounted rates for group policies" },
-    { icon: Phone, title: "Dedicated Support", desc: "Dedicated relationship manager for your company" },
-    { icon: Clock, title: "Easy Claims", desc: "Streamlined claims process for employees" }
+  const keyFeatures = [
+    { title: "Custom Benefit Design", description: "Choose add-ons like dental, wellness, and OPD coverage.", icon: <ClipboardList className="w-8 h-8 text-[#1D9785]" /> },
+    { title: "Dedicated HR Portal", description: "Manage members, access reports, and download policy documents.", icon: <CheckCircle2 className="w-8 h-8 text-[#1D9785]" /> },
+    { title: "Hassle-Free Claims", description: "From submission to payout.", icon: <Phone className="w-8 h-8 text-[#1D9785]" /> },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar />
-      
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-600 via-indigo-600 to-purple-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-transparent"></div>
+
+      <section className="relative bg-gradient-to-r from-[#113040] to-[#2ABFAF] text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-transparent"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center space-y-6">
             <div className="flex justify-center mb-6">
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-3xl">
-                <Users className="h-16 w-16 text-white" />
+                <Hospital className="h-16 w-16 text-white" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Group Health Insurance
-              <span className="block text-3xl md:text-4xl font-normal text-purple-100 mt-2">
-                Complete Health Coverage for Your Team
+            <h1 className="text-4xl md:text-6xl font-normal font-[Ibrand] leading-tight">
+              Group Health Insurance in Pakistan
+              <span className="block text-3xl md:text-3xl font-normal font-[Futura] text-blue-100 mt-4">
+                Protect your employees with comprehensive medical and wellness coverage
               </span>
             </h1>
-            <p className="text-xl text-purple-100 max-w-2xl mx-auto">
-              Comprehensive health insurance solutions for organizations of all sizes
-            </p>
           </div>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Quote Form */}
-        <Card className="mb-12 shadow-2xl border-0 -mt-20 relative z-10 bg-white">
-          <CardHeader className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-t-lg">
-            <CardTitle className="text-2xl flex items-center justify-center">
-              <Calculator className="h-6 w-6 mr-2" />
-              Get Your Group Health Insurance Quote
-            </CardTitle>
-            <CardDescription className="text-purple-100 text-center">
-              Protect your employees with comprehensive health coverage
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="p-8">
-            <form onSubmit={handleCompareSubmit}>
-              <div className="grid md:grid-cols-3 gap-6 mb-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Company Size *</label>
-                  <Select value={formData.companySize} onValueChange={(value) => setFormData({...formData, companySize: value})} required>
-                    <SelectTrigger className="h-12">
-                      <SelectValue placeholder="Select company size" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="small">Small (2-50 employees)</SelectItem>
-                      <SelectItem value="medium">Medium (51-200 employees)</SelectItem>
-                      <SelectItem value="large">Large (201-1000 employees)</SelectItem>
-                      <SelectItem value="enterprise">Enterprise (1000+ employees)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Number of Employees *</label>
-                  <Input 
-                    placeholder="Enter number of employees" 
-                    value={formData.employees}
-                    onChange={(e) => setFormData({...formData, employees: e.target.value})}
-                    className="h-12"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">City *</label>
-                  <Select value={formData.city} onValueChange={(value) => setFormData({...formData, city: value})} required>
-                    <SelectTrigger className="h-12">
-                      <SelectValue placeholder="Select city" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="karachi">Karachi</SelectItem>
-                      <SelectItem value="lahore">Lahore</SelectItem>
-                      <SelectItem value="islamabad">Islamabad</SelectItem>
-                      <SelectItem value="faisalabad">Faisalabad</SelectItem>
-                      <SelectItem value="rawalpindi">Rawalpindi</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+      <main className="flex-grow w-full py-12">
+        <div className="container mx-auto px-4">
+          <div className="space-y-16 w-full max-w-6xl mx-auto">
+            <section>
+              <h3 className="text-3xl font-normal text-[#113040] mb-10 font-[Ibrand] text-center">
+                Coverages
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {coverages.map((cov, idx) => (
+                  <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-lg transition-all duration-300 hover:scale-105 group">
+                    <div className="flex flex-col font-[Futura] items-center text-center space-y-4">
+                      <div className="p-3 bg-orange-50 rounded-full group-hover:bg-orange-100 transition-colors">
+                        {cov.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-normal text-[#113040] mb-2 text-lg font-[Ibrand]">{cov.title}</h4>
+                        <p className="text-gray-600 text-sm leading-relaxed">{cov.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
+            </section>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Industry</label>
-                  <Select value={formData.industry} onValueChange={(value) => setFormData({...formData, industry: value})}>
-                    <SelectTrigger className="h-12">
-                      <SelectValue placeholder="Select industry" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                      <SelectItem value="services">Services</SelectItem>
-                      <SelectItem value="technology">Technology</SelectItem>
-                      <SelectItem value="healthcare">Healthcare</SelectItem>
-                      <SelectItem value="education">Education</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Existing Policy</label>
-                  <Select value={formData.existingPolicy} onValueChange={(value) => setFormData({...formData, existingPolicy: value})}>
-                    <SelectTrigger className="h-12">
-                      <SelectValue placeholder="Do you have existing policy?" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="yes">Yes, we have existing policy</SelectItem>
-                      <SelectItem value="no">No, this is our first policy</SelectItem>
-                      <SelectItem value="expired">Had policy but expired</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+            <section>
+              <h3 className="text-3xl font-normal font-[Ibrand] text-[#113040] mb-10 text-center">
+                Key Features
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {keyFeatures.map((f, idx) => (
+                  <Card key={idx} className="text-center hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                    <CardContent className="p-8">
+                      <div className="flex justify-center mb-6">
+                        <div className="p-4 bg-teal-50 rounded-full group-hover:bg-teal-100 transition-colors">
+                          {f.icon}
+                        </div>
+                      </div>
+                      <h4 className="text-xl font-normal font-[Ibrand] text-[#113040] mb-4">{f.title}</h4>
+                      <p className="text-gray-600 font-[Futura] leading-relaxed">{f.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
-              
-              {/* Company & Contact Details */}
-              <div className="grid md:grid-cols-2 gap-6 mb-8 pt-4 border-t border-gray-200">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Company Name</label>
-                  <Input 
-                    placeholder="Enter company name" 
-                    value={formData.companyName}
-                    onChange={(e) => setFormData({...formData, companyName: e.target.value})}
-                    className="h-12"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Contact Person</label>
-                  <Input 
-                    placeholder="Enter contact person name" 
-                    value={formData.contactPerson}
-                    onChange={(e) => setFormData({...formData, contactPerson: e.target.value})}
-                    className="h-12"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
-                  <Input 
-                    type="email" 
-                    placeholder="Enter email address" 
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="h-12"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Phone</label>
-                  <Input 
-                    placeholder="+92 300 1234567" 
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="h-12"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center">
-                <Button 
-                  type="submit" 
-                  className="w-full md:w-auto px-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-lg font-semibold"
-                >
-                  Compare Group Plans
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-
-        {/* Benefits Section */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 text-center mb-12">
-            Why Choose Group Health Insurance?
-          </h2>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="text-center group">
-                <div className="bg-gradient-to-r from-purple-500 to-indigo-600 p-4 rounded-2xl w-16 h-16 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <benefit.icon className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-slate-600">
-                  {benefit.desc}
-                </p>
-              </div>
-            ))}
+            </section>
           </div>
         </div>
+      </main>
 
-        {/* Features Section */}
-        <div className="mt-20">
-          <h2 className="text-3xl font-bold text-slate-900 text-center mb-12">
-            Group Health Insurance Features
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300 border-0 bg-white/80">
-              <CardContent className="p-8">
-                <div className="bg-gradient-to-r from-purple-500 to-indigo-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Heart className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Comprehensive Coverage</h3>
-                <p className="text-slate-600">Complete medical coverage including hospitalization, OPD, and preventive care</p>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300 border-0 bg-white/80">
-              <CardContent className="p-8">
-                <div className="bg-gradient-to-r from-indigo-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Award className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Corporate Discounts</h3>
-                <p className="text-slate-600">Special group rates and volume discounts for corporate clients</p>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center hover:shadow-lg transition-shadow duration-300 border-0 bg-white/80">
-              <CardContent className="p-8">
-                <div className="bg-gradient-to-r from-green-500 to-blue-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Phone className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Dedicated Support</h3>
-                <p className="text-slate-600">Dedicated account manager and 24/7 support for your employees</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-      
+      <div className="py-8">
+  <Button
+    onClick={() => setShowQuoteForm(true)}
+    className="font-[Ibrand] bg-[#1D9785] text-white text-xl font-normal px-16 py-6 rounded-full shadow-2xl transition-all hover:scale-105 flex items-center gap-3 mx-auto"
+  >
+    Get a Group Health Quote
+    <ArrowBigRightDash className="h-7 w-7 ml-2" />
+  </Button>
+
+  <Dialog open={showQuoteForm} onOpenChange={setShowQuoteForm}>
+  <DialogContent className="w-full max-w-screen-md mx-auto p-0 rounded-2xl max-h-[90vh] overflow-y-auto">
+    <div className="relative">
+      {/* Close button */}
+      <button
+        onClick={() => setShowQuoteForm(false)}
+        className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+      >
+        {/* <X className="w-6 h-6" /> */}
+      </button>
+
+      {/* Your form */}
+      <GroupHealthQuoteForm onSubmit={() => setShowQuoteForm(false)} />
+    </div>
+  </DialogContent>
+</Dialog>
+
+</div>
+
       <Footer />
     </div>
   );

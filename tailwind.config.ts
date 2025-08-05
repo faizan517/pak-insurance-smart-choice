@@ -61,7 +61,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				brand: {
+					blue: '#113040',
+					teal: '#1D9785',
+					aqua: '#2ABFAF',
+					forest: '#0F6C4A',
+					sky: '#4CB2E1',
+					orange: '#F46416',
+				},
+				white: '#FFFFFF',
+				gray: {
+					light: '#EEEEEE',
+					middle: '#888888',
+					dark: '#333333',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -89,7 +103,11 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+			},
+			fontFamily: {
+				sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif','Ibrand','Futura'],
+				rounded: ['Inter', 'ui-rounded', 'system-ui', 'sans-serif','Ibrand','Futura'],
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
