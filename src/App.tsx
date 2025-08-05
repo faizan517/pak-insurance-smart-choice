@@ -41,12 +41,13 @@ const ScrollToTop = () => {
 };
 
 const App = () => (
-  <div>
-    <Toaster />
-    <Sonner />
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
+  <QueryClientProvider client={queryClient}>
+    <div>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
           <Route path="/" element={<Index />} />
           {/* <Route path="/plan" element={<PlanScreen />} /> */}
           <Route path="/compare" element={<Compare />} />
@@ -126,6 +127,7 @@ const App = () => (
         </Routes>
       </BrowserRouter>
     </div>
+  </QueryClientProvider>
 );
 
 export default App;
