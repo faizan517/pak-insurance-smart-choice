@@ -27,6 +27,7 @@ import PetInsurance from "./pages/PetInsurance";
 import DomesticHelper from "./pages/DomesticHelperInsurance";
 import HomeInsurence from "./pages/HomeInsurance";
 import GlobalLifeInsurance from "./pages/GroupLifeInsurance";
+import PlanDetails from "./pages/PlanDetails";
 // import PlanScreen from "./components/PlanScreen";
 
 
@@ -123,6 +124,7 @@ const App = () => (
           {/* <Route path="/services" element={<Services />} /> */}
           <Route path="/faq" element={<FAQ />} />
           {/* <Route path="/contact" element={<Contact />} /> */}
+          <Route path="/plan-details" element={<PlanDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
