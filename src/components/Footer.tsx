@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Shield, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Linkedin } from "lucide-react";
 import logo2 from '../assets/LogoC1white.png'
 const Footer = () => {
   return (
@@ -16,11 +16,40 @@ const Footer = () => {
               className="h-20 w-auto"
             />
             </Link>
-            <p className="text-slate-300 leading-relaxed text-left font-[Futura]">
+            <p className="text-slate-300 leading-relaxed text-left font-[Futuru]">
               More Than Just Insurance Experience, Care, and Security, the Ezee Way. Making insurance accessible, understandable, and supportive for every Pakistani.
             </p>
+            <div className="flex items-center gap-4 mt-6">
+              <a
+                href="https://www.facebook.com/ezeeinsure"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-slate-300 hover:text-[#2ABFAF] transition-colors duration-200"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/ezeeinsure"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-slate-300 hover:text-[#2ABFAF] transition-colors duration-200"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/ezee-insure/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-slate-300 hover:text-[#2ABFAF] transition-colors duration-200"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
             <div className="space-y-2">
-              {/* <p className="text-sm text-slate-400 font-[Futura]">ezee insure SMC Pvt Ltd</p> */}
+              {/* <p className="text-sm text-slate-400 font-[Futuru]">ezee insure SMC Pvt Ltd</p> */}
               {/* <p className="text-sm text-slate-400">SECP Registered Company</p> */}
             </div>
           </div>
@@ -28,7 +57,7 @@ const Footer = () => {
           {/* Insurance Products */}
           <div className="space-y-6">
             <h3 className="text-lg font-normal font-[Ibrand]">Insurance Products</h3>
-            <div className="space-y-3 font-[Futura]">
+            <div className="space-y-3 font-[Futuru]">
               {[
                 { name: "Group Health Insurance", href: "/group-health" },
                 { name: "Individual & Family Health", href: "/health" },
@@ -51,14 +80,15 @@ const Footer = () => {
           {/* Support */}
           <div className="space-y-6">
             <h3 className="text-lg font-normal font-[Ibrand]">Support & Resources</h3>
-            <div className="space-y-3 font-[Futura]">
+            <div className="space-y-3 font-[Futuru]">
               {[
                 // { name: "Help Center", href: "/help" },
                 // { name: "Claims Support", href: "/claims" },
                 { name: "FAQ", href: "/faq" },
                 { name: "About Us", href: "/about" },
-                // { name: "Contact Us", href: "contact" },
-                // { name: "Privacy Policy", href: "/privacy" }
+                { name: "Privacy Policy", href: "/privacy-policy" },
+                { name: "Terms And Conditions", href: "/terms-and-conditions" },
+                { name: "Refund And Cancelation Policy", href: "/cancelation-policy" },
               ].map((link) => (
                 <Link
                   key={link.name}
@@ -74,7 +104,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="space-y-6">
             <h3 className="text-lg font-normal font-[Ibrand]">Contact Us</h3>
-            <div className="space-y-4 font-[Futura]">
+            <div className="space-y-4 font-[Futuru]">
             <div className="flex items-start space-x-3">
                 <MapPin className="h-8 w-8 text-white mt-1" />
                 <div>
@@ -113,7 +143,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-800 mt-12 pt-8 font-[Futura]">
+        <div className="border-t border-slate-800 mt-12 pt-8 font-[Futuru]">
           <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
             <p className="text-slate-400 text-sm text-center">
               © 2025 Ezee Insure. All rights reserved.
