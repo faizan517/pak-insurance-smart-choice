@@ -31,7 +31,7 @@ const GroupLifeInsurance = () => {
             </div>
             <h1 className="text-4xl md:text-6xl font-normal font-[Ibrand] leading-tight">
               Group Life Insurance
-              <span className="block text-3xl md:text-3xl font-normal font-[Futura] text-blue-100 mt-4">
+              <span className="block text-3xl md:text-3xl font-normal font-[Futuru] text-blue-100 mt-4">
                 Secure your team’s future with affordable group rates
               </span>
             </h1>
@@ -49,7 +49,7 @@ const GroupLifeInsurance = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {coverages.map((cov, idx) => (
                   <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-lg transition-all duration-300 hover:scale-105 group">
-                    <div className="flex flex-col font-[Futura] items-center text-center space-y-4">
+                    <div className="flex flex-col font-[Futuru] items-center text-center space-y-4">
                       <div className="p-3 bg-orange-50 rounded-full group-hover:bg-orange-100 transition-colors">
                         {cov.icon}
                       </div>

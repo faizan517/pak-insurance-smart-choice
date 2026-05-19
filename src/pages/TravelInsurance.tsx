@@ -86,17 +86,20 @@ const TravelInsurance = () => {
     },
     {
       title: "Hajj & Umrah",
-      description: "Focus on your spiritual journey—coverage for unforeseen incidents, medical assistance, and repatriation during pilgrimage.",
+      description:
+        "Focus on your spiritual journey—coverage for unforeseen incidents, medical assistance, and repatriation during pilgrimage.",
       icon: <FileText className="w-6 h-6 text-[#F46416]" />,
     },
     {
       title: "Ziarat Packages",
-      description: "Make every pilgrimage blessed—comprehensive protection for religious visits with 24/7 support.",
+      description:
+        "Make every pilgrimage blessed—comprehensive protection for religious visits with 24/7 support.",
       icon: <TrendingUp className="w-6 h-6 text-[#F46416]" />,
     },
     {
       title: "Student Protection",
-      description: "Study abroad safely—health, travel delays, personal liability, and emergency assistance designed for international students.",
+      description:
+        "Study abroad safely—health, travel delays, personal liability, and emergency assistance designed for international students.",
       icon: <Zap className="w-6 h-6 text-[#F46416]" />,
     },
     // {
@@ -119,14 +122,12 @@ const TravelInsurance = () => {
   const keyFeatures = [
     {
       title: "7-Day Claim Settlement",
-      description:
-        "Fast-track processing so you get reimbursed quickly.",
+      description: "Fast-track processing so you get reimbursed quickly.",
       icon: <Zap className="w-8 h-8 text-[#1D9785]" />,
     },
     {
       title: "30-Second Claim Filing:",
-      description:
-        "Quick and simple online claim submission.",
+      description: "Quick and simple online claim submission.",
       icon: <Shield className="w-8 h-8 text-[#1D9785]" />,
     },
     {
@@ -180,13 +181,14 @@ const TravelInsurance = () => {
           <div className="text-center space-y-6">
             <div className="flex justify-center mb-6">
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-3xl">
-              <Plane className="h-16 w-16 text-white" />
+                <Plane className="h-16 w-16 text-white" />
               </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-normal font-[Ibrand] leading-tight">
               Travel Insurance for Every Journey
-              <span className="block text-3xl md:text-3xl font-normal font-[Futura] text-blue-100 mt-4">
-                Whether you're traveling across Pakistan or abroad, we cover all your travel needs with easy, digital support and fast claims.
+              <span className="block text-3xl md:text-3xl font-normal font-[Futuru] text-blue-100 mt-4">
+                Whether you're traveling across Pakistan or abroad, we cover all
+                your travel needs with easy, digital support and fast claims.
               </span>
             </h1>
             {/* <p className="text-xl text-blue-100 max-w-2xl mx-auto">
@@ -238,7 +240,7 @@ const TravelInsurance = () => {
             {/* Coverages */}
             <section>
               <h3 className="text-3xl font-normal text-[#113040] mb-10 font-[Ibrand] text-center">
-                Comprehensive Motor Coverage
+                Comprehensive Travel Coverage
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {coverages.map((cov, idx) => (
@@ -246,7 +248,7 @@ const TravelInsurance = () => {
                     key={idx}
                     className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-lg transition-all duration-300 hover:scale-105 group"
                   >
-                    <div className="flex flex-col font-[Futura] items-center text-center space-y-4">
+                    <div className="flex flex-col font-[Futuru] items-center text-center space-y-4">
                       <div className="p-3 bg-orange-50 rounded-full group-hover:bg-orange-100 transition-colors">
                         {cov.icon}
                       </div>
@@ -267,7 +269,7 @@ const TravelInsurance = () => {
             {/* Key Features */}
             <section>
               <h3 className="text-3xl font-normal font-[Ibrand] text-[#113040] mb-10 text-center">
-                Why Choose Our Motor Insurance?
+                Why Choose Our Shop Insurance?
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {keyFeatures.map((f, idx) => (
@@ -284,7 +286,7 @@ const TravelInsurance = () => {
                       <h4 className="text-xl font-normal font-[Ibrand] text-[#113040] mb-4">
                         {f.title}
                       </h4>
-                      <p className="text-gray-600 font-[Futura] leading-relaxed">
+                      <p className="text-gray-600 font-[Futuru] leading-relaxed">
                         {f.description}
                       </p>
                     </CardContent>
@@ -320,9 +322,8 @@ const TravelInsurance = () => {
           onClick={() => setShowQuoteForm(true)}
           className="font-[Ibrand] bg-[#1D9785] text-white text-xl font-normal px-16 py-6 rounded-full shadow-2xl transition-all hover:scale-105 flex items-center gap-3 mx-auto"
         >
-        Get Free Travel Insurance Quote
-        <ArrowBigRightDash className="h-7 w-7 ml-2" />
-
+          Get Free Travel Insurance Quote
+          <ArrowBigRightDash className="h-7 w-7 ml-2" />
         </Button>
         <QuoteForm
           insuranceType="travel"

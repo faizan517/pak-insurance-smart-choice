@@ -25,12 +25,17 @@ import ParentInsurance from "./pages/ParentInsurance";
 import ShopInsurance from "./pages/motor/ShopInsurance";
 import PetInsurance from "./pages/PetInsurance";
 import DomesticHelper from "./pages/DomesticHelperInsurance";
+import SolarInsurance from "./pages/SolarInsurance";
 import HomeInsurence from "./pages/HomeInsurance";
 import GlobalLifeInsurance from "./pages/GroupLifeInsurance";
 import PlanDetails from "./pages/PlanDetails";
+import PlanScreenSilver from "./components/PlanScreenSilver";
+import PlanScreenGold from "./components/PlanScreenGold";
+import PlanScreenPlatinum from "./components/PlanScreenPlatinum";
 import TermsAndConditions from "./pages/TermsAndConditions";
-// import PlanScreen from "./components/PlanScreen";
-
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CancelationPolicy from "./pages/CancelationPolicy";
+import Pitch from "./pages/Pitch";
 
 const queryClient = new QueryClient();
 
@@ -51,36 +56,45 @@ const App = () => (
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* <Route path="/plan" element={<PlanScreen />} /> */}
+          <Route path="/get-quote" element={<Index showQuoteForm />} />
+          <Route path="/plan-silver" element={<PlanScreenSilver />} />
+          <Route path="/plan-gold" element={<PlanScreenGold />} />
+          <Route path="/plan-platinum" element={<PlanScreenPlatinum />} />
+
           <Route path="/compare" element={<Compare />} />
-          
+
           {/* Motor Insurance Routes */}
           <Route path="/motor" element={<MotorInsurance />} />
           {/* <Route path="/motor/third-party" element={<ThirdPartyInsurance />} /> */}
           {/* <Route path="/motor/comprehensive" element={<ComprehensiveInsurance />} /> */}
           {/* <Route path="/motor/takaful" element={<TakafulInsurance />} /> */}
-          
+
           {/* Bike Insurance Routes */}
           <Route path="/bike" element={<BikeInsurance />} />
           {/* <Route path="/bike/third-party" element={<ThirdPartyInsurance />} />
           <Route path="/bike/comprehensive" element={<ComprehensiveInsurance />} />
           <Route path="/bike/motorcycle" element={<BikeInsurance />} /> */}
-          
+
           {/* Health Insurance Routes */}
           <Route path="/health" element={<HealthInsurance />} />
           {/* <Route path="/health/individual" element={<HealthInsurance />} />
           <Route path="/health/family" element={<HealthInsurance />} />
           <Route path="/health/critical-illness" element={<HealthInsurance />} />
           <Route path="/health/hospital-cash" element={<HealthInsurance />} /> */}
-          
+
           {/* Travel Insurance Routes */}
           <Route path="/travel" element={<TravelInsurance />} />
           <Route path="/parental" element={<ParentInsurance />} />
           <Route path="/shop" element={<ShopInsurance />} />
           <Route path="/domestic-helper" element={<DomesticHelper />} />
-          <Route path="/pet" element={< PetInsurance/>} />
-
-
+          <Route path="/pet" element={<PetInsurance />} />
+          <Route
+            path="/terms-and-conditions"
+            element={<TermsAndConditions />}
+          />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/cancelation-policy" element={<CancelationPolicy />} />
+          <Route path="/elevatorpitch" element={<Pitch />} />
 
           {/* <Route path="/travel/schengen" element={<TravelInsurance />} />
           <Route path="/travel/student" element={<TravelInsurance />} />
@@ -94,10 +108,10 @@ const App = () => (
           <Route path="/travel/j1-visa" element={<GlobalTravelInsurance />} />
           <Route path="/travel/student-visa" element={<GlobalTravelInsurance />} />
           <Route path="/travel/schengen-visa" element={<GlobalTravelInsurance />} /> */}
-          
+
           {/* Global Travel Insurance Routes */}
           <Route path="/global-travel" element={<GlobalTravelInsurance />} />
-          
+
           {/* Group Health Insurance Routes */}
           <Route path="/group-health" element={<GroupHealthInsurance />} />
           <Route path="/group-life" element={<GlobalLifeInsurance />} />
@@ -105,25 +119,26 @@ const App = () => (
           <Route path="/group-health/corporate" element={<GroupHealthInsurance />} />
           <Route path="/group-health/sme" element={<GroupHealthInsurance />} /> */}
           {/* <Route path="/group-health/medical" element={<GroupHealthInsurance />} /> */}
-          
+
           {/* Life Insurance Routes */}
-          <Route path="/life" element={<LifeInsurance />} />
-          
+          {/* <Route path="/life" element={<LifeInsurance />} /> */}
+
           {/* Takaful Insurance Routes */}
           {/* <Route path="/takaful" element={<TakafulInsurance />} />
           <Route path="/takaful/motor" element={<TakafulInsurance />} />
           <Route path="/takaful/travel" element={<TakafulInsurance />} />
           <Route path="/takaful/family" element={<TakafulInsurance />} />
           <Route path="/takaful/general" element={<TakafulInsurance />} /> */}
-          
+
           {/* Home and Specialized Routes */}
           <Route path="/home" element={<HomeInsurence />} />
           <Route path="/specialized" element={<Index />} />
-          
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/about" element={<About />} />
           {/* <Route path="/services" element={<Services />} /> */}
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/solar" element={<SolarInsurance />} />
           {/* <Route path="/contact" element={<Contact />} /> */}
           <Route path="/plan-details" element={<PlanDetails />} />
           <Route path="/terms" element={<TermsAndConditions />} />

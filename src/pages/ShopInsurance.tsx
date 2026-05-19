@@ -73,8 +73,7 @@ const TravelInsurance = () => {
     },
     {
       title: "Risk-Based Premiums",
-      description:
-        " Customized premium according to your vehicle’s profile.",
+      description: " Customized premium according to your vehicle’s profile.",
       icon: <Car className="w-6 h-6 text-[#F46416]" />,
     },
     {
@@ -186,7 +185,8 @@ const TravelInsurance = () => {
               </span>
             </h1>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Comprehensive travel protection for domestic and international trips with 24/7 support
+              Comprehensive travel protection for domestic and international
+              trips with 24/7 support
             </p>
           </div>
         </div>
@@ -233,7 +233,7 @@ const TravelInsurance = () => {
             {/* Coverages */}
             <section>
               <h3 className="text-3xl font-bold text-[#113040] mb-10 text-center">
-                Comprehensive Motor Coverage
+                Comprehensive Shop Coverage
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {coverages.map((cov, idx) => (
@@ -262,7 +262,7 @@ const TravelInsurance = () => {
             {/* Key Features */}
             <section>
               <h3 className="text-3xl font-bold text-[#113040] mb-10 text-center">
-                Why Choose Our Motor Insurance?
+                Why Choose Our Shop Insurance?
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {keyFeatures.map((f, idx) => (
@@ -311,26 +311,26 @@ const TravelInsurance = () => {
         </div>
       </main>
       <div className="py-12">
-      <Button
-        onClick={handleCompareSubmit}
-        className="bg-gradient-to-r from-[#F46416] to-[#1D9785] text-white text-xl font-bold px-16 py-6 rounded-full shadow-2xl transition-all hover:scale-105 ring-2 ring-[#F46416]/20 flex items-center gap-3 mx-auto"
-      >
-        Get Free Shop Insurance Quote
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-7 w-7 ml-2"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+        <Button
+          onClick={handleCompareSubmit}
+          className="bg-gradient-to-r from-[#F46416] to-[#1D9785] text-white text-xl font-bold px-16 py-6 rounded-full shadow-2xl transition-all hover:scale-105 ring-2 ring-[#F46416]/20 flex items-center gap-3 mx-auto"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M17 8l4 4m0 0l-4 4m4-4H3"
-          />
-        </svg>
-      </Button>
+          Get Free Shop Insurance Quote
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-7 w-7 ml-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            />
+          </svg>
+        </Button>
       </div>
       <Footer />
     </div>

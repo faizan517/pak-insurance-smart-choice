@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import QuoteForm from "@/components/QuoteForm";
 
 const faqs = [
   {
@@ -51,6 +52,7 @@ const faqs = [
 const FAQ = () => (
   <>
     <Navbar />
+    <QuoteForm />
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-[#E0F7FA] pb-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-[#2ABFAF]/20 via-white to-[#1D9785]/10 text-center relative">
@@ -59,7 +61,7 @@ const FAQ = () => (
             <HelpCircle className="h-16 w-16 text-[#F46416]" />
           </div>
           <h1 className="text-5xl md:text-6xl font-normal text-[#113040] font-[Ibrand] mb-4">Frequently Asked Questions</h1>
-          <p className="text-xl md:text-2xl text-[#1D9785] font-[Futura] max-w-2xl mx-auto font-medium">
+          <p className="text-xl md:text-2xl text-[#1D9785] font-[Futuru] max-w-2xl mx-auto font-medium">
             Find answers to common questions about Group Health Insurance, claims, coverage limits, and policy setup with Ezee Insure.
           </p>
         </div>
@@ -71,7 +73,7 @@ const FAQ = () => (
               <AccordionTrigger className="text-xl font-normal font-[Ibrand] text-[#113040] px-6 py-4 focus:outline-none">
                 {faq.q}
               </AccordionTrigger>
-              <AccordionContent className="text-gray-700 text-lg px-6 pb-6 font-[Futura]">
+              <AccordionContent className="text-gray-700 text-lg px-6 pb-6 font-[Futuru]">
                 {faq.a}
               </AccordionContent>
             </AccordionItem>

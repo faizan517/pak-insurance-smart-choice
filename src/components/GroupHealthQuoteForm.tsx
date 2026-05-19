@@ -84,7 +84,7 @@ const GroupHealthQuoteForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 space-y-6 font-[Futura]">
+    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 space-y-6 font-[Futuru]">
       <div className="flex justify-between items-start">
         <h3 className="text-2xl font-normal text-black font-[Ibrand]">Assure your employees of better health</h3>
         <button type="button" onClick={onSubmit} className="text-gray-500 hover:text-gray-700">

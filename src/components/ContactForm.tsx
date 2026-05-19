@@ -11,12 +11,12 @@ const ContactForm = () => (
         <h2 className="text-4xl md:text-5xl font-normal text-[#113040] mb-4 font-[Ibrand]">
           Get In Touch
         </h2>
-        <p className="text-xl font-[Futura] text-gray-600 max-w-2xl mx-auto">
+        <p className="text-xl font-[Futuru] text-gray-600 max-w-2xl mx-auto">
           Have questions about insurance? We're here to help! Reach out to our expert team for personalized assistance.
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-8 font-[Futura]">
+      <div className="grid lg:grid-cols-3 gap-8 font-[Futuru]">
         {/* Contact Information Cards */}
         <div className="lg:col-span-1 space-y-6 font-[Ibrand] font-normal">
           <Card className="bg-gradient-to-r from-[#113040] to-[#1D9785] text-white border-0 shadow-xl">
@@ -29,7 +29,7 @@ const ContactForm = () => (
                   </div>
                   <div>
                     <p className="font-normal">+92 334 8230456</p>
-                    <p className="text-sm text-white/80 font-[Futura]">24/7 Support</p>
+                    <p className="text-sm text-white/80 font-[Futuru]">24/7 Support</p>
                   </div>
                 </div>
                 
@@ -39,7 +39,7 @@ const ContactForm = () => (
                   </div>
                   <div>
                     <p className="font-normal">info@ezeeinsure.com</p>
-                    <p className="text-sm text-white/80 font-[Futura]">General Inquiries</p>
+                    <p className="text-sm text-white/80 font-[Futuru]">General Inquiries</p>
                   </div>
                 </div>
                 
@@ -49,7 +49,7 @@ const ContactForm = () => (
                   </div>
                   <div>
                     <p className="font-normal">302, Plot # LS 6/7, Street 09, Block 14, Gulistan-e-Johar</p>
-                    <p className="text-sm text-white/80 font-[Futura]">Karachi, Pakistan</p>
+                    <p className="text-sm text-white/80 font-[Futuru]">Karachi, Pakistan</p>
                   </div>
                 </div>
                 
@@ -59,7 +59,7 @@ const ContactForm = () => (
                   </div>
                   <div>
                     <p className="font-normal">Mon-Fri: 9:00 AM - 6:00 PM</p>
-                    <p className="text-sm text-white/80 font-[Futura]">Business Hours</p>
+                    <p className="text-sm text-white/80 font-[Futuru]">Business Hours</p>
                   </div>
                 </div>
               </div>
@@ -68,7 +68,7 @@ const ContactForm = () => (
         </div>
 
         {/* Contact Form */}
-        <div className="lg:col-span-2 font-[Futura]">
+        <div className="lg:col-span-2 font-[Futuru]">
           <Card className="border-0 shadow-2xl bg-white">
             <CardContent className="p-8">
               <h3 className="text-2xl font-normal text-[#113040] font-[Ibrand] mb-6">Send us a Message</h3>

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Shield, CheckCircle, Heart, Zap, Briefcase, Building2 } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import about from '../assets/about.png'
+import QuoteForm from "@/components/QuoteForm";
 const values = [
   {
     icon: <CheckCircle className="h-8 w-8 text-[#2ABFAF]" />, title: "Simplicity", desc: "Clear policies, easy processes."
@@ -22,6 +23,8 @@ const values = [
 const About = () => (
   <>
     <Navbar />
+    <QuoteForm />
+
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-[#E0F7FA] pb-20">
       {/* Hero Section */}
       <section className="py-10 md:py-20">
@@ -31,7 +34,7 @@ const About = () => (
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal mb-4 md:mb-6 text-left font-[Ibrand]">
               About <span className="text-[#2ABFAF]">Ezee Insure</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl font-[Futura] text-[#113040] mb-4 text-left max-w-xl">
+            <p className="text-base sm:text-lg md:text-xl font-[Futuru] text-[#113040] mb-4 text-left max-w-xl">
               Founded by industry veterans frustrated with confusing policies & slow service, Ezee Insure brings over 20 years of combined expertise to deliver a fresh, user-first approach. We exist to make insurance accessible, understandable, and truly supportive for every Pakistani.
             </p>
           </div>
@@ -50,11 +53,11 @@ const About = () => (
       <section className="max-w-4xl mx-auto px-4 py-28 grid md:grid-cols-2 gap-12">
         <div className="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-[#F46416]">
           <h2 className="text-2xl font-normal font-[Ibrand] text-[#113040] mb-4">Our Mission</h2>
-          <p className="text-lg font-[Futura] text-gray-700">To make insurance accessible, understandable, and supportive for every Pakistani—business or individual.</p>
+          <p className="text-lg font-[Futuru] text-gray-700">To make insurance accessible, understandable, and supportive for every Pakistani—business or individual.</p>
         </div>
         <div className="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-[#F46416]">
           <h2 className="text-2xl font-normal text-[#113040] mb-4 font-[Ibrand]">Our Vision</h2>
-          <p className="text-lg font-[Futura] text-gray-700">To be Pakistan's most trusted insurance partner, known for simplicity, speed, and service excellence.</p>
+          <p className="text-lg font-[Futuru] text-gray-700">To be Pakistan's most trusted insurance partner, known for simplicity, speed, and service excellence.</p>
         </div>
       </section>
       {/* Values */}
@@ -65,7 +68,7 @@ const About = () => (
             <div key={i} className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center border-t-4 border-[#2ABFAF]/20">
               {v.icon}
               <h3 className="text-xl font-normal font-[Ibrand] text-[#1D9785] mt-4 mb-2">{v.title}</h3>
-              <p className="text-gray-600 font-[Futura] text-base">{v.desc}</p>
+              <p className="text-gray-600 font-[Futuru] text-base">{v.desc}</p>
             </div>
           ))}
         </div>

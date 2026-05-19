@@ -1,12 +1,23 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { HeartPulse, Hospital, Ambulance, Microscope, Clock4, Baby, Landmark, LayoutList, PhoneCall, ArrowBigRightDash, Biohazard } from "lucide-react";
+import {
+  HeartPulse,
+  Hospital,
+  Ambulance,
+  Microscope,
+  Clock4,
+  Baby,
+  Landmark,
+  LayoutList,
+  PhoneCall,
+  ArrowBigRightDash,
+  Biohazard,
+} from "lucide-react";
 import QuoteForm from "@/components/QuoteForm";
+import QuickQuoteForm from "@/components/QuickQuoteForm";
 
 const HealthInsurance = () => {
   const [showQuoteForm, setShowQuoteForm] = useState(false);
@@ -33,25 +44,42 @@ const HealthInsurance = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar />
 
+      {/* HERO */}
       <section className="relative bg-gradient-to-r from-[#113040] to-[#2ABFAF] text-white overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-transparent"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center space-y-6">
-            <div className="flex justify-center mb-6">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-3xl">
-                <HeartPulse className="h-16 w-16 text-white" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-transparent" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            {/* Left: Heading */}
+            <div className="text-center md:text-left space-y-6">
+              <div className="flex justify-center md:justify-start">
+                <div className="bg-white/10 backdrop-blur-sm p-6 rounded-3xl">
+                  <HeartPulse className="h-16 w-16 text-white" />
+                </div>
+              </div>
+
+              <h1 className="text-4xl md:text-6xl font-normal font-[Ibrand] leading-tight">
+                Individual & Family Health Insurance
+                <span className="block text-3xl md:text-3xl font-normal font-[Futuru] text-blue-100 mt-4">
+                  Secure health coverage for yourself and loved ones with customizable plans
+                </span>
+              </h1>
+            </div>
+
+            {/* Right: Form — compact and aligned */}
+            <div className="w-full md:justify-self-end">
+              <div className="mx-auto md:mx-0 w-full max-w-md md:max-w-sm lg:max-w-md">
+                <QuickQuoteForm
+                  inline
+                  title="Quick Quote"
+                  className="shadow-xl ring-1 ring-white/20"
+                />
               </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-normal font-[Ibrand] leading-tight">
-              Individual & Family Health Insurance
-              <span className="block text-3xl md:text-3xl font-normal font-[Futura] text-blue-100 mt-4">
-                Secure health coverage for yourself and loved ones with customizable plans
-              </span>
-            </h1>
           </div>
         </div>
       </section>
 
+      {/* CONTENT */}
       <main className="flex-grow w-full py-12">
         <div className="container mx-auto px-4">
           <div className="space-y-16 w-full max-w-6xl mx-auto">
@@ -61,8 +89,11 @@ const HealthInsurance = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {coverages.map((cov, idx) => (
-                  <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-lg transition-all duration-300 hover:scale-105 group">
-                    <div className="flex flex-col font-[Futura] items-center text-center space-y-4">
+                  <div
+                    key={idx}
+                    className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-lg transition-all duration-300 hover:scale-105 group"
+                  >
+                    <div className="flex flex-col font-[Futuru] items-center text-center space-y-4">
                       <div className="p-3 bg-orange-50 rounded-full group-hover:bg-orange-100 transition-colors">
                         {cov.icon}
                       </div>
@@ -82,7 +113,10 @@ const HealthInsurance = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {keyFeatures.map((f, idx) => (
-                  <Card key={idx} className="text-center hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                  <Card
+                    key={idx}
+                    className="text-center hover:shadow-xl transition-all duration-300 hover:scale-105 group"
+                  >
                     <CardContent className="p-8">
                       <div className="flex justify-center mb-6">
                         <div className="p-4 bg-teal-50 rounded-full group-hover:bg-teal-100 transition-colors">
@@ -90,7 +124,7 @@ const HealthInsurance = () => {
                         </div>
                       </div>
                       <h4 className="text-xl font-normal font-[Ibrand] text-[#113040] mb-4">{f.title}</h4>
-                      <p className="text-gray-600 font-[Futura] leading-relaxed">{f.description}</p>
+                      <p className="text-gray-600 font-[Futuru] leading-relaxed">{f.description}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -100,6 +134,7 @@ const HealthInsurance = () => {
         </div>
       </main>
 
+      {/* FOOTER CTA + MODAL (old flow) */}
       <div className="py-8">
         <Button
           onClick={() => setShowQuoteForm(true)}
@@ -108,6 +143,7 @@ const HealthInsurance = () => {
           Explore Individual Plans
           <ArrowBigRightDash className="h-7 w-7 ml-2" />
         </Button>
+
         <QuoteForm
           insuranceType="individual-health"
           insuranceTypeLabel="Individual & Family Health Insurance"
@@ -115,6 +151,7 @@ const HealthInsurance = () => {
           onOpenChange={setShowQuoteForm}
         />
       </div>
+
       <Footer />
     </div>
   );

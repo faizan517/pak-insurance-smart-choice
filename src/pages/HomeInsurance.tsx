@@ -40,7 +40,7 @@ const HomeInsurance = () => {
             </div>
             <h1 className="text-4xl md:text-6xl font-normal font-[Ibrand] leading-tight">
               Home Insurance More Than Just a Policy
-              <span className="block text-3xl md:text-3xl font-normal font-[Futura] text-blue-100 mt-4">
+              <span className="block text-3xl md:text-3xl font-normal font-[Futuru] text-blue-100 mt-4">
                 We protect your sanctuary of memories and dreams against accidents, disasters, and the unexpected.
               </span>
             </h1>
@@ -58,7 +58,7 @@ const HomeInsurance = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {coverages.map((cov, idx) => (
                   <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-lg transition-all duration-300 hover:scale-105 group">
-                    <div className="flex flex-col font-[Futura] items-center text-center space-y-4">
+                    <div className="flex flex-col font-[Futuru] items-center text-center space-y-4">
                       <div className="p-3 bg-orange-50 rounded-full group-hover:bg-orange-100 transition-colors">
                         {cov.icon}
                       </div>
@@ -86,7 +86,7 @@ const HomeInsurance = () => {
                         </div>
                       </div>
                       <h4 className="text-xl font-normal font-[Ibrand] text-[#113040] mb-4">{f.title}</h4>
-                      <p className="text-gray-600 font-[Futura] leading-relaxed">{f.description}</p>
+                      <p className="text-gray-600 font-[Futuru] leading-relaxed">{f.description}</p>
                     </CardContent>
                   </Card>
                 ))}

@@ -1,17 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import { Badge } from "@/components/ui/badge";
-import { Shield, Car, Heart, Plane, User, Calculator, CheckCircle, Phone, Clock, Star, Users, Award, TrendingUp, Home, UserCheck, PawPrint, ShoppingBag, MessageCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import {
+  Shield,
+  Car,
+  Heart,
+  Plane,
+  User,
+  Calculator,
+  CheckCircle,
+  Phone,
+  Clock,
+  Star,
+  Users,
+  Award,
+  TrendingUp,
+  Home,
+  UserCheck,
+  PawPrint,
+  ShoppingBag,
+  MessageCircle,
+  Sun,
+} from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QuoteForm from "@/components/QuoteForm";
-import family from '../assets/Group.png'
+import family from "../assets/Group.png";
 import ContactForm from "@/components/ContactForm";
 import ChatBot from "@/components/ChatBot";
-const Index = () => {
+// const Index = () => {
+const Index = ({ showQuoteForm = false }) => {
   const [visibleServices, setVisibleServices] = useState(6);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/get-quote" || showQuoteForm) {
+      // Trigger your popup form
+      window.dispatchEvent(new CustomEvent("openQuoteForm"));
+    }
+  }, [location.pathname, showQuoteForm]);
 
   const insuranceServices = [
     {
@@ -20,15 +63,15 @@ const Index = () => {
       icon: Users,
       href: "/group-health",
       color: "[#2ABFAF]",
-      bgPattern: "bg-gradient-to-br from-[#113040]/10 to-[#1D9785]/10"
+      bgPattern: "bg-gradient-to-br from-[#113040]/10 to-[#1D9785]/10",
     },
     {
       title: "Group Life Insurance",
       description: "Secure your team's future with affordable group rates",
       icon: Shield,
-      href: "/life",
+      href: "/group-life",
       color: "[#2ABFAF]",
-      bgPattern: "[#2ABFAF]/10"
+      bgPattern: "[#2ABFAF]/10",
     },
     {
       title: "Family & Individual Plans",
@@ -36,7 +79,7 @@ const Index = () => {
       icon: Heart,
       href: "/health",
       color: "[#2ABFAF]",
-      bgPattern: "[#2ABFAF]/10"
+      bgPattern: "[#2ABFAF]/10",
     },
     {
       title: "Parental Insurance",
@@ -44,15 +87,16 @@ const Index = () => {
       icon: User,
       href: "/parental",
       color: "[#2ABFAF]",
-      bgPattern: "bg-gradient-to-br from-[#1D9785]/10 to-[#0F6C4A]/10"
+      bgPattern: "bg-gradient-to-br from-[#1D9785]/10 to-[#0F6C4A]/10",
     },
     {
       title: "Travel Insurance",
-      description: "Coverage for domestic, international, Hajj & Umrah journeys",
+      description:
+        "Coverage for domestic, international, Hajj & Umrah journeys",
       icon: Plane,
       href: "/travel",
       color: "[#2ABFAF]",
-      bgPattern: "bg-gradient-to-br from-[#0F6C4A]/10 to-[#1D9785]/10"
+      bgPattern: "bg-gradient-to-br from-[#0F6C4A]/10 to-[#1D9785]/10",
     },
     {
       title: "Motor Insurance",
@@ -60,16 +104,16 @@ const Index = () => {
       icon: Car,
       href: "/motor",
       color: "[#2ABFAF]",
-      bgPattern: "bg-gradient-to-br from-[#F46416]/10 to-[#4CB2E1]/10"
+      bgPattern: "bg-gradient-to-br from-[#F46416]/10 to-[#4CB2E1]/10",
     },
-    
+
     {
       title: "Home Insurance",
       description: "More than just a policy - protect your sanctuary",
       icon: Home,
       href: "/home",
       color: "[#2ABFAF]",
-      bgPattern: "bg-gradient-to-br from-[#113040]/10 to-[#0F6C4A]/10"
+      bgPattern: "bg-gradient-to-br from-[#113040]/10 to-[#0F6C4A]/10",
     },
     {
       title: "Domestic Helper Insurance",
@@ -77,16 +121,16 @@ const Index = () => {
       icon: UserCheck,
       href: "/domestic-helper",
       color: "[#2ABFAF]",
-      bgPattern: "bg-gradient-to-br from-[#2ABFAF]/10 to-[#4CB2E1]/10"
+      bgPattern: "bg-gradient-to-br from-[#2ABFAF]/10 to-[#4CB2E1]/10",
     },
-    
+
     {
       title: "Pet Insurance",
       description: "Protect your furry family members with veterinary coverage",
       icon: PawPrint,
       href: "/pet",
       color: "[#2ABFAF]",
-      bgPattern: "bg-gradient-to-br from-[#F46416]/10 to-[#2ABFAF]/10"
+      bgPattern: "bg-gradient-to-br from-[#F46416]/10 to-[#2ABFAF]/10",
     },
     {
       title: "Shop Insurance",
@@ -94,8 +138,16 @@ const Index = () => {
       icon: ShoppingBag,
       href: "/shop",
       color: "[#2ABFAF]",
-      bgPattern: "bg-gradient-to-br from-[#4CB2E1]/10 to-[#1D9785]/10"
-    }
+      bgPattern: "bg-gradient-to-br from-[#4CB2E1]/10 to-[#1D9785]/10",
+    },
+    {
+      title: "Solar Insurance",
+      description: "Complete protection for your Solar Investment",
+      icon: Sun,
+      href: "/solar",
+      color: "[#2ABFAF]",
+      bgPattern: "bg-gradient-to-br from-[#F46416]/10 to-[#1D9785]/10",
+    },
   ];
 
   const whyChooseFeatures = [
@@ -103,38 +155,39 @@ const Index = () => {
       icon: CheckCircle,
       title: "Dedicated to Simplicity",
       description: "No jargon, no hidden fees just clear, honest policies.",
-      color: "#2ABFAF"
+      color: "#2ABFAF",
     },
     {
       icon: Users,
       title: "Expert Support",
       description: "Your own account manager guides you from quote to claim.",
-      color: "#2ABFAF"
+      color: "#2ABFAF",
     },
     {
       icon: Clock,
       title: "Fast Digital Onboarding",
       description: "Get a tailored Group Health Insurance quote in 24 hours.",
-      color: "#2ABFAF"
+      color: "#2ABFAF",
     },
     {
       icon: Shield,
       title: "Largest Cashless Network",
       description: "500+ Providers Network for cashless treatments.",
-      color: "#2ABFAF"
+      color: "#2ABFAF",
     },
     {
       icon: TrendingUp,
       title: "7-Day Claim Settlement",
       description: "Quick turnaround means your team gets paid fast.",
-      color: "#2ABFAF"
+      color: "#2ABFAF",
     },
     {
       icon: Award,
       title: "Trusted Partnerships",
-      description: "We work with Pakistan's top insurers to find you the best rates.",
-      color: "#2ABFAF"
-    }
+      description:
+        "We work with Pakistan's top insurers to find you the best rates.",
+      color: "#2ABFAF",
+    },
   ];
 
   const howItWorksSteps = [
@@ -142,53 +195,131 @@ const Index = () => {
       step: "01",
       title: "Tell Us Your Needs",
       description: "Share your company size or personal requirements.",
-      color: "[#2ABFAF]"
+      color: "[#2ABFAF]",
     },
     {
-      step: "02", 
+      step: "02",
       title: "Compare Top Plans",
       description: "We match you with the best coverage options.",
-      color: "[#2ABFAF]"
+      color: "[#2ABFAF]",
     },
     {
       step: "03",
-      title: "Get Instant Coverage", 
+      title: "Get Instant Coverage",
       description: "Quick digital onboarding and policy issuance.",
-      color: "[#2ABFAF]"
+      color: "[#2ABFAF]",
     },
     {
       step: "04",
       title: "Enjoy Ongoing Support",
       description: "Dedicated claims guidance and annual plan reviews.",
-      color: "[#2ABFAF]"
-    }
+      color: "[#2ABFAF]",
+    },
   ];
+
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) return;
+
+    const intervalId = setInterval(() => {
+      api.scrollNext();
+    }, 4000);
+
+    return () => clearInterval(intervalId);
+  }, [api]);
 
   const testimonials = [
     {
-      name: "HR Manager",
-      company: "TechStart Solutions",
+      name: "Faisal Yaseen",
+      company: "Ocean Mall",
+      role: "HR",
       rating: 5,
-      comment: "Ezee Insure made employee health coverage effortless. Their team handled everything—from plan design to claim support. Highly recommend!",
-      location: "Karachi",
-      avatar: "TS"
+      comment:
+        "As we scaled our team, managing health insurance became messy. Ezee Insure helped structure everything properly, coverage, communication, and ongoing support. It’s a system that actually works day to day.",
+      location: "HR",
+      avatar: "FY",
     },
     {
-      name: "CFO",
-      company: "GlobalIndustries Ltd.",
+      name: "Mahreen Gul",
+      company: "Johnny & Jugnu",
+      role: "HR",
       rating: 5,
-      comment: "I saved 15% on premiums without sacrificing coverage. The online portal is intuitive and the support is top-notch.",
-      location: "Lahore",
-      avatar: "GI"
+      comment:
+        "Ezee Insure made health insurance much easier for our team. The process is clear, responses are quick, and employees actually get help when they need it. It doesn’t feel like we’re dealing with an insurance company, it feels like a support partner.",
+      location: "HR",
+      avatar: "MG",
     },
     {
-      name: "Business Owner",
-      company: "Family Business",
+      name: "Afzaal Hadir",
+      company: "GO PK Resources",
+      role: "CEO",
       rating: 5,
-      comment: "Asaan Bhai made everything so simple! From quote to policy, the entire process was transparent and hassle-free.",
-      location: "Islamabad",
-      avatar: "FB"
-    }
+      comment:
+        "We moved to Ezee Insure to avoid the usual renewal stress and claim complaints. The transition was smooth, communication was transparent, and costs were clearly explained. Overall, it’s been a good decision for us.",
+      location: "CEO",
+      avatar: "AH",
+    },
+    {
+      name: "Fahad Idrees Saigal",
+      company: "KraveMart",
+      role: "HR",
+      rating: 5,
+      comment:
+        "What we appreciate most about Ezee Insure is ownership. Once a case is reported, their team stays engaged until it’s properly closed. We don’t feel left alone after submission.",
+      location: "HR",
+      avatar: "FS",
+    },
+    {
+      name: "Naveen Ahuja",
+      company: "Sindh TV",
+      role: "Director Sales & Operations",
+      rating: 5,
+      comment:
+        "Ezee Insure made our insurance experience top notch. They handled our claims and renewal process smoothly. We are happy with Ezee Insure' services overall",
+      location: "Director Sales & Operations",
+      avatar: "NA",
+    },
+    {
+      name: "Ruby Lau",
+      company: "Neural Lab",
+      role: "Financial Analyst & Office Admin",
+      rating: 5,
+      comment:
+        "Ezee Insure helped our employees with their health insurance. They got us the best pricing and benefits and handled our complete health insurance journey without any hiccups",
+      location: "Financial Analyst & Office Admin",
+      avatar: "RL",
+    },
+    {
+      name: "Hasan Warsi",
+      company: "The mind mentor",
+      role: "Co-Founder",
+      rating: 5,
+      comment:
+        "Ezee Insure’s availability and hands-on guidance made a huge difference for us. From quick responses to clear, practical advice, their team was always there when we needed them. We never felt left in the dark, which is rare in insurance. Their instant support gave us real peace of mind.",
+      location: "Co-Founder",
+      avatar: "HW",
+    },
+    {
+      name: "Muneeb Farooqui",
+      company: "Tabani Corp",
+      role: "Head People & Culture",
+      rating: 5,
+      comment:
+        "What truly sets Ezee Insure apart is their instant assistance and constant availability. Anytime we had a question or needed guidance, their team was just a call or message away. They explained everything clearly, acted quickly, and made us feel supported at every step. It’s difficult to find an insurance partner this responsive and dependable.",
+      location: "Head People & Culture",
+      avatar: "MF",
+    },
+    {
+      name: "Muhammad Hadi",
+      company: "Shah-e-karam shipping",
+      role: "HR",
+      rating: 5,
+      comment:
+        "Ezee Insure made the entire insurance process genuinely stress-free. They took the time to understand our needs, offered competitive options, and handled everything with professionalism and transparency. Their support didn’t stop at policy issuance—they were responsive, proactive, and always available when we needed guidance. Highly recommended for any business looking for reliable health insurance solutions.",
+      location: "HR",
+      avatar: "MH",
+    },
   ];
   const insuranceCategories = [
     {
@@ -197,7 +328,7 @@ const Index = () => {
       icon: Car,
       href: "/motor",
       color: "from-blue-500 via-blue-600 to-indigo-600",
-      bgPattern: "bg-gradient-to-br from-blue-50 to-indigo-100"
+      bgPattern: "bg-gradient-to-br from-blue-50 to-indigo-100",
     },
     {
       title: "Health Insurance",
@@ -205,7 +336,7 @@ const Index = () => {
       icon: Heart,
       href: "/health",
       color: "from-rose-500 via-pink-600 to-red-600",
-      bgPattern: "bg-gradient-to-br from-rose-50 to-pink-100"
+      bgPattern: "bg-gradient-to-br from-rose-50 to-pink-100",
     },
     {
       title: "Travel Insurance",
@@ -213,7 +344,7 @@ const Index = () => {
       icon: Plane,
       href: "/travel",
       color: "from-emerald-500 via-teal-600 to-cyan-600",
-      bgPattern: "bg-gradient-to-br from-emerald-50 to-teal-100"
+      bgPattern: "bg-gradient-to-br from-emerald-50 to-teal-100",
     },
     {
       title: "Life Insurance",
@@ -221,14 +352,14 @@ const Index = () => {
       icon: User,
       href: "/group-life",
       color: "from-violet-500 via-purple-600 to-indigo-600",
-      bgPattern: "bg-gradient-to-br from-violet-50 to-purple-100"
-    }
+      bgPattern: "bg-gradient-to-br from-violet-50 to-purple-100",
+    },
   ];
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-[#4CB2E1]/10">
       <Navbar />
       <QuoteForm />
-      
+
       {/* Hero Section */}
       <section className="relative w-full bg-white overflow-hidden">
         {/* Gradient Background Left */}
@@ -242,15 +373,17 @@ const Index = () => {
               An <span className="text-[#F46416]">Ezee</span> Way for Pakistanis
               <span className="block">to Buy Insurance</span>
             </h1>
-            <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-gray-700 font-normal font-[Futura] max-w-xl mx-auto lg:mx-0">
-              Simple. Transparent. Caring. Protect your team & family with Pakistan's most user friendly insurance platform.
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-gray-700 font-normal font-[Futuru] max-w-xl mx-auto lg:mx-0">
+              Simple. Transparent. Caring. Protect your team & family with
+              Pakistan's most user friendly insurance platform.
             </p>
             <button
               onClick={() => {
-                const el = document.getElementById('insurance-services');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                const el = document.getElementById("insurance-services");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
-              className="mt-4 sm:mt-6 px-4 sm:px-6 py-2 sm:py-3 font-[Futura] rounded-full border-2 border-[#2ABFAF] text-[#2ABFAF] font-semibold hover:bg-[#2ABFAF] hover:text-white transition-all duration-300 text-sm sm:text-base">
+              className="mt-4 sm:mt-6 px-4 sm:px-6 py-2 sm:py-3 font-[Futuru] rounded-full border-2 border-[#2ABFAF] text-[#2ABFAF] font-semibold hover:bg-[#2ABFAF] hover:text-white transition-all duration-300 text-sm sm:text-base"
+            >
               Get Started
             </button>
           </div>
@@ -271,16 +404,17 @@ const Index = () => {
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 pt-16 sm:pt-20 lg:pt-32">
             {insuranceCategories.map((category, index) => (
               <Link key={index} to={category.href}>
-                <div className="font-[Futura] group bg-gradient-to-b from-[#2ABFAF] to-[#113040] backdrop-blur-lg border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:bg-white/20 hover:scale-110 transition-all duration-500 cursor-pointer shadow-xl">
+                <div className="font-[Futuru] group bg-gradient-to-b from-[#2ABFAF] to-[#113040] backdrop-blur-lg border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:bg-white/20 hover:scale-110 transition-all duration-500 cursor-pointer shadow-xl">
                   <category.icon className="h-6 w-8 sm:h-8 w-10 lg:h-10 lg:w-12 text-white mx-auto mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-xs sm:text-sm font-semibold text-white block text-center tracking-wide">{category.title.split(' ')[0]}</span>
+                  <span className="text-xs sm:text-sm font-semibold text-white block text-center tracking-wide">
+                    {category.title.split(" ")[0]}
+                  </span>
                 </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
-
 
       {/* <section className="relative bg-gradient-to-br from-brand-blue via-brand-teal to-brand-sky text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-brand-blue/40"></div>
@@ -330,21 +464,24 @@ const Index = () => {
             <h2 className="font-[Ibrand] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-[#113040] mb-4 sm:mb-6 lg:mb-8 tracking-tight">
               Why Ezee Insure Leads in
               <span className="block bg-[#1a9182] bg-clip-text text-transparent">
-              Corporate and Personal Insurance
+                Corporate and Personal Insurance
               </span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
             {whyChooseFeatures.map((feature, index) => (
-              <div key={index} className="flex flex-col items-center text-center group">
+              <div
+                key={index}
+                className="flex flex-col items-center text-center group"
+              >
                 <div className="bg-[#2ABFAF] p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-6 sm:mb-8 md:mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-xl">
                   <feature.icon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
                 </div>
                 <h3 className="text-lg sm:text-xl md:text-2xl font-normal text-[#113040] mb-3 sm:mb-4 md:mb-6 font-[Ibrand]">
                   {feature.title}
                 </h3>
-                <p className="text-sm sm:text-base md:text-lg text-[#333333] leading-relaxed font-[Futura]">
+                <p className="text-sm sm:text-base md:text-lg text-[#333333] leading-relaxed font-[Futuru]">
                   {feature.description}
                 </p>
               </div>
@@ -364,11 +501,13 @@ const Index = () => {
               <div className="text-center lg:text-left order-2 lg:order-1">
                 <div className="relative flex justify-center lg:justify-start">
                   <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 bg-white rounded-2xl flex items-center justify-center shadow-xl overflow-hidden">
-                    <img 
-                      src={"/lovable-uploads/a8d9903f-5a71-47b8-9998-0eafcbaab10c.png"} 
-                      alt="Asaan Bhai Mascot" 
-                      className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 object-contain" 
-                      style={{ imageRendering: 'auto' }} 
+                    <img
+                      src={
+                        "/lovable-uploads/a8d9903f-5a71-47b8-9998-0eafcbaab10c.png"
+                      }
+                      alt="Asaan Bhai Mascot"
+                      className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 object-contain"
+                      style={{ imageRendering: "auto" }}
                     />
                   </div>
                   {/* Floating elements */}
@@ -383,17 +522,25 @@ const Index = () => {
               {/* Content */}
               <div className="text-center lg:text-left order-1 lg:order-2">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-[#113040] mb-4 sm:mb-6 lg:mb-8 leading-tight font-[Ibrand]">
-                  <span className="bg-[#113040] bg-clip-text text-transparent"></span> 
-                  Introducing Asaan Bhai 
-                  <br className="hidden sm:block"/>
-                  <span className="text-[#1a9182]"> Your Insurance Superhero</span> 
+                  <span className="bg-[#113040] bg-clip-text text-transparent"></span>
+                  Introducing Asaan Bhai
+                  <br className="hidden sm:block" />
+                  <span className="text-[#1a9182]">
+                    {" "}
+                    Your Insurance Superhero
+                  </span>
                 </h2>
                 <div className="space-y-4 sm:space-y-6 text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 lg:mb-10 leading-relaxed">
-                  <p className="pt-2 font-[Futura]">
-                    Say hello to Asaan Bhai, our friendly shield mascot who brings Ezee Insure's promise to life! With his trusty umbrella hat and checklist in hand, Asaan Bhai guides you through every step—making insurance feel as easy and reliable as possible. Spot him on our site, social posts, and emails, always ready to protect and empower you.
+                  <p className="pt-2 font-[Futuru]">
+                    Say hello to Asaan Bhai, our friendly shield mascot who
+                    brings Ezee Insure's promise to life! With his trusty
+                    umbrella hat and checklist in hand, Asaan Bhai guides you
+                    through every step—making insurance feel as easy and
+                    reliable as possible. Spot him on our site, social posts,
+                    and emails, always ready to protect and empower you.
                   </p>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 font-[Futura]">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 font-[Futuru]">
                   <a
                     href="https://wa.me/923348230456"
                     target="_blank"
@@ -431,49 +578,60 @@ const Index = () => {
       </section>
 
       {/* All Insurance Services */}
-      <section id="insurance-services" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-white relative">
+      <section
+        id="insurance-services"
+        className="py-16 sm:py-20 md:py-24 lg:py-28 bg-white relative"
+      >
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 sm:mb-20 md:mb-24">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-[#113040] mb-6 sm:mb-8 tracking-tight font-[Ibrand]">
               All Your Insurance Needs,
               <span className="block bg-[#1a9182] bg-clip-text text-transparent">
-              Covered Ezee
+                Covered Ezee
               </span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-            {insuranceServices.slice(0, visibleServices).map((service, index) => (
-              <Link key={index} to={service.href}>
-                <Card className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-4 border-0 shadow-xl overflow-hidden h-full`}>
-                  <CardHeader className="pb-6 sm:pb-8 relative">
-                    <div className="flex items-center justify-between mb-6 sm:mb-8">
-                      <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-${service.color} hover:bg-${service.bgPattern} flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300`}>
-                        <service.icon className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
+            {insuranceServices
+              .slice(0, visibleServices)
+              .map((service, index) => (
+                <Link key={index} to={service.href}>
+                  <Card
+                    className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-4 border-0 shadow-xl overflow-hidden h-full`}
+                  >
+                    <CardHeader className="pb-6 sm:pb-8 relative">
+                      <div className="flex items-center justify-between mb-6 sm:mb-8">
+                        <div
+                          className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-${service.color} hover:bg-${service.bgPattern} flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300`}
+                        >
+                          <service.icon className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
+                        </div>
                       </div>
-                    </div>
-                    <CardTitle className="text-xl sm:text-2xl font-normal text-[#113040] mb-2 sm:mb-3 tracking-tight font-[Ibrand]">
-                      {service.title}
-                    </CardTitle>
-                    <CardDescription className="text-[#333333] text-base sm:text-lg leading-relaxed font-[Futura]">
-                      {service.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <Button className={`w-full bg-${service.color} hover:bg-${service.bgPattern} shadow-xl hover:shadow-2xl transition-all duration-300 text-base sm:text-lg py-3 sm:py-4 rounded-xl font-semibold`}>
-                      Get Quote
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                      <CardTitle className="text-xl sm:text-2xl font-normal text-[#113040] mb-2 sm:mb-3 tracking-tight font-[Ibrand]">
+                        {service.title}
+                      </CardTitle>
+                      <CardDescription className="text-[#333333] text-base sm:text-lg leading-relaxed font-[Futuru]">
+                        {service.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <Button
+                        className={`w-full bg-${service.color} hover:bg-${service.bgPattern} shadow-xl hover:shadow-2xl transition-all duration-300 text-base sm:text-lg py-3 sm:py-4 rounded-xl font-semibold`}
+                      >
+                        Get Quote
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
           </div>
 
           <div className="text-center mt-12 sm:mt-16 flex flex-col items-center gap-4">
             {visibleServices < insuranceServices.length && (
               <Button
                 size="lg"
-                className="bg-[#1a9182] hover:bg-[#2ABFAF]/90 font-normal px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg rounded-full shadow-xl font-[Futura]"
+                className="bg-[#1a9182] hover:bg-[#2ABFAF]/90 font-normal px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg rounded-full shadow-xl font-[Futuru]"
                 onClick={() => setVisibleServices(insuranceServices.length)}
               >
                 Show More
@@ -495,7 +653,7 @@ const Index = () => {
             <h2 className="text-4xl md:text-5xl font-normal text-[#113040] mb-8 tracking-tight font-[Ibrand]">
               Insurance in
               <span className="block bg-[#1a9182] bg-clip-text text-transparent">
-              4 Easy Steps
+                4 Easy Steps
               </span>
             </h2>
           </div>
@@ -503,13 +661,15 @@ const Index = () => {
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
             {howItWorksSteps.map((step, index) => (
               <div key={index} className="text-center group">
-                <div className={`bg-${step.color} font-[Ibrand] text-white text-4xl font-normal w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 shadow-xl `}>
+                <div
+                  className={`bg-${step.color} font-[Ibrand] text-white text-4xl font-normal w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 shadow-xl `}
+                >
                   {step.step}
                 </div>
                 <h3 className="text-2xl font-normal text-[#113040] mb-6 font-[Ibrand]">
                   {step.title}
                 </h3>
-                <p className="text-[#333333] text-lg leading-relaxed font-[Futura]">
+                <p className="text-[#333333] text-lg leading-relaxed font-[Futuru]">
                   {step.description}
                 </p>
               </div>
@@ -518,7 +678,7 @@ const Index = () => {
 
           {/* <div className="text-center mt-16">
             <Link to="/compare">
-              <Button size="lg" className="font-[Futura] bg-[#1a9182] hover:bg-[#1D9785]/90 font-normal px-12 py-4 text-lg rounded-full shadow-xl text-white">
+              <Button size="lg" className="font-[Futuru] bg-[#1a9182] hover:bg-[#1D9785]/90 font-normal px-12 py-4 text-lg rounded-full shadow-xl text-white">
                 Get Started Today
               </Button>
             </Link>
@@ -538,36 +698,62 @@ const Index = () => {
             </h2>
           </div>
 
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="flex flex-col h-full border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 bg-white justify-between"
-              >
-                <CardHeader className="pb-6 flex flex-col items-center">
-                  {/* <div className="flex items-center justify-center space-x-2 mb-8"> */}
-                    {/* {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-6 w-6 text-[#F46416] fill-current" />
-                    ))} */}
-                  {/* </div> */}
-                  <CardDescription className="text-[#333333] text-lg leading-relaxed font-medium font-[Futura] text-center">
-                    "{testimonial.comment}"
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-col items-center justify-center gap-4 mt-6">
-                    <div className="w-16 h-16 bg-gradient-to-r from-[#113040] to-[#1D9785] rounded-full flex items-center justify-center shadow-lg">
-                      <span className="text-lg font-normal text-white font-[Ibrand]">{testimonial.avatar}</span>
-                    </div>
-                    <div className="text-center">
-                      <div className="font-normal text-[#113040] text-lg font-[Ibrand]">{testimonial.name}</div>
-                      <div className="text-[#1D9785] font-normal font-[Ibrand]">{testimonial.company}</div>
-                      <div className="text-[#888888] text-sm font-[Futura]">{testimonial.location}</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="relative px-12">
+            <Carousel
+              setApi={setApi}
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 pb-4">
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem
+                    key={index}
+                    className="pl-4 md:basis-1/2 lg:basis-1/3 py-4"
+                  >
+                    <Card className="flex flex-col h-full border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 bg-white justify-between rounded-2xl overflow-hidden">
+                      <CardHeader className="pb-4 flex flex-col items-center pt-8 px-6">
+                        <div className="flex gap-1 mb-4">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="h-4 w-4 fill-[#F46416] text-[#F46416]"
+                            />
+                          ))}
+                        </div>
+                        <CardDescription className="text-[#444444] text-[15px] leading-relaxed font-normal font-[Futuru] text-center italic">
+                          "{testimonial.comment}"
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="pb-8">
+                        <div className="flex flex-col items-center justify-center gap-3 mt-4">
+                          <div className="w-14 h-14 bg-gradient-to-br from-[#113040] to-[#1D9785] rounded-full flex items-center justify-center shadow-md border-2 border-white">
+                            <span className="text-base font-medium text-white font-[Ibrand]">
+                              {testimonial.avatar}
+                            </span>
+                          </div>
+                          <div className="text-center">
+                            <div className="font-semibold text-[#113040] text-base font-[Ibrand] tracking-wide">
+                              {testimonial.name}
+                            </div>
+                            <div className="text-[#1D9785] text-[13px] font-medium font-[Ibrand]">
+                              {testimonial.location}
+                            </div>
+                            <div className="text-[#777777] text-[12px] font-[Futuru] mt-0.5">
+                              {testimonial.company}
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="flex -left-4 md:-left-12 border-[#1D9785] text-[#1D9785] hover:bg-[#1D9785] hover:text-white h-10 w-10 shadow-lg" />
+              <CarouselNext className="flex -right-4 md:-right-12 border-[#1D9785] text-[#1D9785] hover:bg-[#1D9785] hover:text-white h-10 w-10 shadow-lg" />
+            </Carousel>
           </div>
         </div>
       </section>
@@ -575,25 +761,27 @@ const Index = () => {
       {/* Final CTA Section */}
       <section className="py-28 bg-gradient-to-r from-[#113040] via-[#1D9785] to-[#0F6C4A] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#113040]/70 to-[#1D9785]/50"></div>
-        
+
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-normal mb-8 tracking-tight font-[Ibrand]">
             Ready to Make Insurance Ezee?
           </h2>
-          <p className="text-xl text-slate-200 mb-16 max-w-3xl mx-auto leading-relaxed font-[Futura]">
+          <p className="text-xl text-slate-200 mb-16 max-w-3xl mx-auto leading-relaxed font-[Futuru]">
             Take the Ezee Step Today
           </p>
-          <Button 
-            size="lg" 
-            className="bg-white font-[Futura] text-black hover:from-[#F46416]/90 hover:to-[#2ABFAF]/90 font-bold px-16 py-6 text-xl rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
-            onClick={() => window.dispatchEvent(new CustomEvent('openQuoteForm'))}
+          <Button
+            size="lg"
+            className="bg-white font-[Futuru] text-black hover:from-[#F46416]/90 hover:to-[#2ABFAF]/90 font-bold px-16 py-6 text-xl rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
+            onClick={() =>
+              window.dispatchEvent(new CustomEvent("openQuoteForm"))
+            }
           >
             {/* <Calculator className="h-6 w-6 mr-3" /> */}
             Get Your Free Quote
           </Button>
         </div>
       </section>
-<ContactForm />
+      <ContactForm />
       <Footer />
     </div>
   );

@@ -105,8 +105,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			},
 			fontFamily: {
-				sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif','Ibrand','Futura'],
-				rounded: ['Inter', 'ui-rounded', 'system-ui', 'sans-serif','Ibrand','Futura'],
+				sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif','Ibrand','Futuru'],
+				rounded: ['Inter', 'ui-rounded', 'system-ui', 'sans-serif','Ibrand','Futuru'],
 			},
 		}
 	},
